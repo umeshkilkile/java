@@ -1,0 +1,5 @@
+Item 25: Prefer lists to arrays
+
+- Arrays differ from generic types in two important ways. First, arrays are covariant.
+	- This scary-sounding word means simply that if Sub is a subtype of Super, then the array type Sub[] is a subtype of Super[]. 
+	- Generics, by contrast, are invariant: for any two distinct types Type1 and Type2, List<Type1> is neither a subtype nor a supertype of List<Type2>

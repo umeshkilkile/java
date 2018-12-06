@@ -1,0 +1,18 @@
+1. What is generic class or interface?
+	- A class or interface whose declaration has one or more type parameters is a generic class or interface.
+	- List<E> (read “list of E”) , List<String> (read “list of string”)
+	- Generic classes and interfaces are collectively known as generic types.
+
+2. What are unbounded wildcard types?
+	- Java has provided a safe alternative known as unbounded wildcard types. If you want to use a generic type but you don’t know 
+	  or care what the actual type parameter is, you can use a question mark instead. 
+	- For example, the unbounded wildcard type for the generic type Set<E> is Set<?> (read “set of some type”). 
+	- It is the most general parameterized Set type, capable of holding any set.
+
+3. What is the difference between the unbounded wildcard type Set<?> and the raw type Set?
+	- The wildcard type is safe and the raw type isn’t. 
+	- You can put any element into a collection with a raw type, easily corrupting the collection’s type invariant.
+	- you can’t put any element (other than null) into a Collection<?>. Attempting to do so will generate 
+	  a compile-time error message.,
+	- Generic type information is erased at runtime, it is illegal to use the instanceof 
+	  operator on parameterized types other than unbounded wildcard types.

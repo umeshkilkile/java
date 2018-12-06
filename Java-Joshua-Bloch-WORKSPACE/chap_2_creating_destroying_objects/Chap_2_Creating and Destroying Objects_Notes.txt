@@ -1,0 +1,86 @@
+- THIS chapter concerns creating and destroying objects: when and how to create
+them, when and how to avoid creating them, how to ensure they are destroyed in
+a timely manner, and how to manage any cleanup actions that must precede their
+destruction.
+
+	- Item 1: Consider static factory methods instead of constructors
+		- A class can provide its clients with static factory methods instead of, or in
+ 			addition to, public constructors. Providing a static factory method instead
+ 			of a public constructor has both advantages and disadvantages. One advantage
+ 			of static factory methods is that, unlike constructors, they have names.
+		- Because they have names, static factory methods don’t share the restriction
+			discussed in the previous paragraph. In cases where a class seems to require
+			multiple constructors with the same signature, replace the constructors with
+			static factory methods and carefully chosen names to highlight their differences.
+	
+	- Item 2: Consider a builder when faced with many constructor parameters
+		- The telescoping constructor pattern works, but it is hard to write
+			client code when there are many parameters, and harder still to read it.
+		- In summary, the Builder pattern is a good choice when designing classes
+			whose constructors or static factories would have more than a handful of
+			parameters, especially if many of the parameters are optional or of identical
+			type. Client code is much easier to read and write with builders than with
+			telescoping constructors, and builders are much safer than JavaBeans.
+			
+	- Item 3: Enforce the singleton property with a private constructor or an enum type
+	
+	- Item 4: Enforce noninstantiability with a private constructor
+		- Attempting to enforce noninstantiability by making a class abstract does
+			not work. The class can be subclassed and the subclass instantiated.
+			Furthermore, it misleads the user into thinking the class was designed for
+			inheritance. There is, however, a simple idiom to ensure
+			noninstantiability. A default constructor is generated only if a class contains no
+			explicit constructors, so a class can be made noninstantiable by including a
+			private constructor:
+			
+	- Item 5: Prefer dependency injection to hardwiring resources
+		- Static utility classes and singletons are inappropriate for classes whose behavior is parameterized by an underlying
+			resource.
+		- Pass the resource into the constructor when creating a new instance. This is one form of dependency injection.
+		- Do not use a singleton or static utility class to implement a class that depends on one or more underlying resources 
+			whose behavior affects that of the class, and do not have the class create these resources directly. 
+			Instead, pass the resources, or factories to create them, into the constructor (or static factory or
+			builder). 
+		- This practice, known as dependency injection, will greatly enhance the flexibility, reusability, and testability of a class.
+	
+	- Item 6: Avoid creating unnecessary objects
+		- An object can always be reused if it is immutable
+		- The constructor must create a new object each time it’s called, while the
+			factory method is never required to do so and won’t in practice.
+			
+	- Item 7: Eliminate obsolete object references
+		- Nulling out object references should be the exception rather than the norm.
+			The best way to eliminate an obsolete reference is to let the variable that
+			contained the reference fall out of scope. This occurs naturally if you define each
+			variable in the narrowest possible scope
+		- WeakHashMap; entries will be removed automatically after they become
+			obsolete. Remember that WeakHashMap is useful only if the desired lifetime of
+			cache entries is determined by external references to the key, not the value.
+	
+	- Item 8: Avoid finalizers and cleaners
+		- The Java 9 replacement for finalizers is cleaners. Cleaners are less dangerous than
+			finalizers, but still unpredictable, slow, and generally unnecessary.
+		- In Java, the garbage collector reclaims the storage associated with an object
+			when it becomes unreachable, requiring no special effort on the part of the programmer.
+		- One shortcoming of finalizers and cleaners is that there is no guarantee they’ll be executed promptly
+		- Never do anything time-critical in a finalizer or cleaner.
+		- Never depend on a finalizer or cleaner to update persistent state.
+		- Cleaners are a bit better than finalizers in this regard because
+			class authors have control over their own cleaner threads, but cleaners still run in
+			the background, under the control of the garbage collector, so there can be no
+			guarantee of prompt cleaning.
+		- Don’t be seduced by the methods System.gc and System.runFinalization. They may increase the odds of finalizers or
+			cleaners getting executed, but they don’t guarantee it.
+		- There is a severe performance penalty for using finalizers and cleaners.
+		- Finalizers have a serious security problem: they open your class up to finalizer attacks.
+		- Finalizers run in background thread but programmer do not have control on that thread, where as cleaners do run in
+			background thread but programmer have control on that thread.
+		- Throwing an exception from a constructor should be sufficient to prevent an object from
+			coming into existence; in the presence of finalizers, it is not.
+		- To protect nonfinal classes from finalizer attacks, write a final finalize method that does nothing.
+	
+	- Item 9: Prefer try-with-resources to try-finally
+		- A try-finally statement was the best way to guarantee that a
+			resource would be closed properly, even in the face of an exception or return
+		- To be usable with try-with-resources construct, a resource must implement the AutoCloseable interface, which
+			consists of a single void-returning close method.
