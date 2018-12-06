@@ -1,7 +1,0 @@
-package com_22.lowes.collections.COLLECTION;
-
-//A Map filled with data using a generator object.
-
-public class MapData {
-
-}

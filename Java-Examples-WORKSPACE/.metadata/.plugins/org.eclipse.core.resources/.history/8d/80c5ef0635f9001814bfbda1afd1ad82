@@ -1,7 +1,0 @@
-package com.lowes.rtti;
-
-public class Person extends Individual {
-	public Person(String name) {
-		super(name);
-	}
-}

@@ -1,7 +1,0 @@
-package com_16.lowes.polymorphism;
-
-class Mill {
-	Grain process() {
-		return new Grain();
-	}
-}

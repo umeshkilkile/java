@@ -1,5 +1,0 @@
-package com_14.lowes.interfaces;
-
-interface Game {
-	boolean move();
-}

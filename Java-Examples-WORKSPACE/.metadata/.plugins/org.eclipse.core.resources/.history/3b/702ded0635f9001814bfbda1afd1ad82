@@ -1,7 +1,0 @@
-package com.lowes.rtti;
-
-public class HiddenC {
-	public static A makeA() {
-		return new C();
-	}
-}

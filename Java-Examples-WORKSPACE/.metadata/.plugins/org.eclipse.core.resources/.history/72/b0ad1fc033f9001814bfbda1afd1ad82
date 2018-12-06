@@ -1,7 +1,0 @@
-package com.lowes.inheritance;
-
-public class SuperClass {
-	public SuperClass() {
-		System.out.println("SuperClass.SuperClass()");
-	}
-}

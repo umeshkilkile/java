@@ -1,8 +1,0 @@
-package com.lowes.micellaneous;
-
-public class StaticKeyword_Demo {
-	public static void main(String[] args) {
-		StaticTest st1 = new StaticTest();
-		StaticTest st2 = new StaticTest();
-	}
-}

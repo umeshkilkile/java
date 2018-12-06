@@ -1,7 +1,0 @@
-package com_14.lowes.interfaces;
-
-class Woodwind extends Wind {
-	public String toString() {
-		return "Woodwind";
-	}
-}

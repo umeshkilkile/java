@@ -1,5 +1,0 @@
-package com_17.lowes.abstract_classes;
-
-public enum Note {
-	MIDDLE_C, C_SHARP, B_FLAT;
-}

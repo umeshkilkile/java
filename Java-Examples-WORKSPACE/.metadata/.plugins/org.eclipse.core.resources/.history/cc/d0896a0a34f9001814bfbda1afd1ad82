@@ -1,7 +1,0 @@
-package com_14.lowes.interfaces;
-
-class ChessFactory implements GameFactory {
-	public Game getGame() {
-		return new Chess();
-	}
-}

@@ -1,7 +1,0 @@
-package com.lowes.reusing.classes;
-
-class Drawing extends Art {
-	Drawing() {
-		System.out.println("Drawing constructor");
-	}
-}

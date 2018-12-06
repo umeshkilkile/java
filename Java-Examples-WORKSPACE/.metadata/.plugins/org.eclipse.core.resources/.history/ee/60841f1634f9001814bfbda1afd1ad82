@@ -1,7 +1,0 @@
-package com_16.lowes.polymorphism;
-
-class Derived extends PrivateOverride_Demo {
-	public void f() {
-		System.out.println("public f()");
-	}
-}

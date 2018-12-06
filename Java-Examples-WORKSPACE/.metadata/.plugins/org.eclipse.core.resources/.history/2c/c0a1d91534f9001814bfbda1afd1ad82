@@ -1,7 +1,0 @@
-package com_16.lowes.polymorphism;
-
-class SadActor extends Actor {
-	public void act() {
-		System.out.println("SadActor");
-	}
-}

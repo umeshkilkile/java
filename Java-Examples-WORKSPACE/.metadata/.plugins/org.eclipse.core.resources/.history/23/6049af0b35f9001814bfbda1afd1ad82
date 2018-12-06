@@ -1,6 +1,0 @@
-package com.lowes.reusing.classes;
-
-class Wheel {
-	public void inflate(int psi) {
-	}
-}

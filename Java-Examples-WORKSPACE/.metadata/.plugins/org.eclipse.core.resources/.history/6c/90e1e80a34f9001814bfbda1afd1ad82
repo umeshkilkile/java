@@ -1,5 +1,0 @@
-package com_14.lowes.interfaces;
-
-interface Monster {
-	void menace();
-}

@@ -1,7 +1,0 @@
-package com.lowes.micellaneous;
-
-public interface Operation {
-	String description();
-
-	void command();
-}

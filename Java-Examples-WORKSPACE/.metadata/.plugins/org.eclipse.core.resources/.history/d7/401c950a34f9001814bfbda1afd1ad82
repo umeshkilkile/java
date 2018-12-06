@@ -1,9 +1,0 @@
-package com_14.lowes.interfaces;
-
-class DragonZilla implements DangerousMonster {
-	public void menace() {
-	}
-
-	public void destroy() {
-	}
-}

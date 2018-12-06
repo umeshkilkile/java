@@ -1,7 +1,0 @@
-package com.lowes.reflections;
-
-public class ClassDemo_1 {
-	public static void main(String[] args) {
-
-	}
-}

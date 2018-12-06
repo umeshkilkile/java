@@ -1,4 +1,0 @@
-package com_35.lowes.exceptions;
-
-class StormException extends Exception {
-}

@@ -1,7 +1,0 @@
-package com_5.lowes.arrays;
-
-class ClassParameter<T> {
-	public T[] f(T[] arg) {
-		return arg;
-	}
-}

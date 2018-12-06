@@ -1,9 +1,0 @@
-package com_16.lowes.polymorphism;
-
-class Super {
-	public int field = 0;
-
-	public int getField() {
-		return field;
-	}
-}

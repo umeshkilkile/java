@@ -1,7 +1,0 @@
-package com.company.anonymousclasses;
-
-public interface Age {
-	int x = 21;
-
-	void getAge();
-}

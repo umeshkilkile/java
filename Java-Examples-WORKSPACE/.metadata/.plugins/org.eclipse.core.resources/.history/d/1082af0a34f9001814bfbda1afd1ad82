@@ -1,4 +1,0 @@
-package com_14.lowes.interfaces;
-
-interface I4 extends I1, I3 {
-}

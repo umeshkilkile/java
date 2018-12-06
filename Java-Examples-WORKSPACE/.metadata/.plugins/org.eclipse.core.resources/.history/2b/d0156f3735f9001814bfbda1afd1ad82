@@ -1,5 +1,0 @@
-package com.lowes.inheritance;
-
-public interface AddInterface {
-	int add(int num1, int num2);
-}

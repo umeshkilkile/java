@@ -1,7 +1,0 @@
-package com.lowes.rtti;
-
-class Triangle extends Shape {
-	public String toString() {
-		return "Triangle";
-	}
-}

@@ -1,7 +1,0 @@
-package com.lowes.reusing.classes;
-
-class Game {
-	Game(int i) {
-		System.out.println("Game constructor");
-	}
-}

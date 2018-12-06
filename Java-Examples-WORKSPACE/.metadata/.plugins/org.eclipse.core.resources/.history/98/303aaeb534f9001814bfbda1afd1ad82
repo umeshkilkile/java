@@ -1,6 +1,0 @@
-package com_37.lowes.threads;
-
-import java.util.concurrent.LinkedBlockingQueue;
-
-public class ToastQueue extends LinkedBlockingQueue<Toast> {
-}

@@ -1,5 +1,0 @@
-package com_14.lowes.interfaces;
-
-interface I2 {
-	int f(int i);
-}

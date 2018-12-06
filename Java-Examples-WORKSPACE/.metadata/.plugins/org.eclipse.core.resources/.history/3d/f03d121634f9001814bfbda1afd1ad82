@@ -1,7 +1,0 @@
-package com_16.lowes.polymorphism;
-
-class Grain {
-	public String toString() {
-		return "Grain";
-	}
-}

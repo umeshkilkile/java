@@ -1,4 +1,0 @@
-package com.lowes.rtti;
-
-interface Waterproof {
-}

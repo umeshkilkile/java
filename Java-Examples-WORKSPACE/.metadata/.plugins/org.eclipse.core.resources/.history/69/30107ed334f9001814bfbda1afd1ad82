@@ -1,7 +1,0 @@
-package com_7.lowes.expressions;
-
-public class Bicycle {
-	int gear;
-	public Bicycle() {
-	}
-}

@@ -1,7 +1,0 @@
-package com.lowes.rtti;
-
-class Circle extends Shape {
-	public String toString() {
-		return "Circle";
-	}
-}

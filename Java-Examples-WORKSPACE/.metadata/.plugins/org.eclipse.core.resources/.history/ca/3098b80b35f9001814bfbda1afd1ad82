@@ -1,9 +1,0 @@
-package com.lowes.reusing.classes;
-
-class Window {
-	public void rollup() {
-	}
-
-	public void rolldown() {
-	}
-}
