@@ -1,0 +1,18 @@
+Inheritance
+	- A subclass is a specialization of a superclass, and a superclass is a generalization of one or more subclasses.
+	- Inheritance is a Method of Code Reuse
+	- Inheritance can be an effective method to share code between classes that have some traits in common, 
+		yet allowing the classes to have some parts that are different.
+	- Superclasses and subclasses form an inheritance structure which is also called a class hierarchy. 
+		At the top of the class hierarchy you have the superclasses. At the bottom of the class hierarchy you have the subclasses.
+
+What is inherited?
+	- When a class inherits from a superclass, it inherits parts of the superclass methods and fields. 
+	- The subclass can also override (redefine) the inherited methods. Fields cannot be overridden, but can be "shadowed" in subclasses.
+	- When a subclass extends a superclass in Java, all protected and public fields and methods of the superclass are inherited by the subclass. 
+		By inherited is meant that these fields and methods are part of the subclass, as if the subclass had declared them itself. 
+		protected and public fields can be called and referenced just like the methods declared directly in the subclass.
+	- Fields and methods with default (package) access modifiers can be accessed by subclasses only if the subclass is located in the same package as the superclass. 
+	- Private fields and methods of the superclass can never be referenced directly by subclasses. They can, however, be referenced indirectly via methods 
+		reachable from the subclass (e.g default (package), protected and public methods).
+	- Constructors are not inherited by subclasses, but a subclass constructor must call a constructor in the superclass.

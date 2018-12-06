@@ -1,0 +1,5 @@
+package com.lowes.innerclasses;
+
+interface ServiceFactory {
+	Service getService();
+}

@@ -1,0 +1,4 @@
+package com_21.lowes.generics;
+
+class Gala extends Apple {
+}

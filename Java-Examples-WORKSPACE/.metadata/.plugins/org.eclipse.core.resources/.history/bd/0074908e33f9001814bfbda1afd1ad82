@@ -1,0 +1,7 @@
+package com.lowes.refactoringoldcode;
+
+public class Bond implements Product {
+	Bond() {
+		System.out.println("Bond created");
+	}
+}

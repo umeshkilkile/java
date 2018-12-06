@@ -1,0 +1,5 @@
+package com.lowes.defaultmethods;
+
+public class C1 extends D implements B, A {
+
+}

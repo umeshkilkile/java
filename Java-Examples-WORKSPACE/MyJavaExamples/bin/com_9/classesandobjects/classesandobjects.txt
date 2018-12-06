@@ -1,0 +1,85 @@
+- An object has state, behavior and identity
+- This means that an object can have internal data (which gives it state), methods (to produce behavior), and each object can be uniquely distinguished from every other object—to put this in a concrete sense, each object has a unique address in memory
+- “solution space,” which is the place where you’re implementing that solution, such as a computer
+- “problem space,” which is the place where the problem exists, such as a business
+- a class describes a set of objects that have identical characteristics (data elements) and behaviors (functionality)
+- High cohesion is a fundamental quality of software design: It means that the various aspects of a software component (such as an object, although this could also apply to a method or a library of objects) “fit together” well.
+- Java uses three explicit keywords to set the boundaries in a class: public, private, and protected. These access specifiers determine who can use the definitions that follow.
+	- public:  public means the following element is available to everyone.
+	- private: The private keyword, on the other hand, means that no one can access that element except you, the creator of the type, inside methods of that type. private is a brick wall between you and the client programmer. Someone who tries to access a private member will get a compile-time error.
+	- protected: The protected keyword acts like private, with the exception that an inheriting class has access to protected members, but not private members.
+- Java also has a “default” access, which comes into play if you don’t use one of the aforementioned specifiers. This is usually called package access because classes can access the members of other classes in the same package (library component), but outside of the package those same members appear to be private.
+- The simplest way to reuse a class is to just use an object of that class directly, but you can also place an object of that class inside a new class. We call this “creating a member object.” Your new class can be made up of any number and type of other objects, in any combination that you need to achieve the functionality desired in your new class. 
+	Because you are composing a new class from existing classes, this concept is called composition (if the composition happens dynamically, it’s usually called aggregation). 
+	Composition is often referred to as a “has-a” relationship, as in “A car has an engine.”
+
+- Is-a relationship
+	- Should inheritance override only baseclass methods (and not add new methods that aren’t in the base class)? 
+		This would mean that the derived class is exactly the same type as the base class since it has exactly the same interface. 
+		As a result, you can exactly substitute an object of the derived class for an object of the base class. 
+		This can be thought of as pure substitution, and it’s often referred to as the substitution principle. 
+		In a sense, this is the ideal way to treat inheritance. We often refer to the relationship between the base class and derived classes 
+			in this case as an is-a relationship, because you can say, “A circle is a shape.”
+- islike-a relationship
+	- There are times when you must add new interface elements to a derived type, thus extending the interface. 
+		The new type can still be substituted for the base type, but the substitution isn’t perfect because your new methods are not 
+		accessible from the base type. This can be described as an islike-a relationship (my term). 
+		The new type has the interface of the old type but it also contains other methods, so you can’t really say it’s exactly the same.
+- upcasting
+	- process of treating a derived type as though it were its base type upcasting. Thus, casting to a base type is moving up the inheritance diagram: “upcasting.”
+- List classes to hold sequences. Maps (also known as associative arrays, to associate objects with other objects). Sets (to hold one of each type of object).
+- Randomly accessing elements in an ArrayList is a constant-time operation; it takes the same amount of time regardless of the element you select.
+- In a LinkedList it is expensive to move through the list to randomly select an element, and it takes longer to find an element that is farther down the list.
+- On the other hand, if you want to insert an element in the middle of a sequence, it’s cheaper in a LinkedList than in an ArrayList.
+- An exception is an object that is “thrown” from the site of the error and can be “caught” by an appropriate exception handler designed to handle that particular type of error.
+
+You manipulate objects with references
+	- you treat everything as an object, the identifier you manipulate is actually a “reference” to an object.
+	- Java object identifiers are actually “object references.” And everything is actually pass by value. 
+		So you’re not passing by reference, you’re “passing an object reference by value.”
+	- e.g.,
+		- String s;
+			- Here you’ve created only the reference, not an object.
+
+You must create all the objects
+	- e.g.,
+		- String s = new String("asdf");
+			- When you create a reference, you want to connect it with a new object. You do so, in general, with the new operator. 
+				The keyword new says, “Make me a new one of these objects.”
+
+Where storage lives
+	- Registers. This is the fastest storage because it exists in a place different from that of other storage: inside the processor.
+	- The stack. This lives in the general random-access memory (RAM) area, but has direct support from the processor via its stack pointer. The stack pointer is moved down to create new memory and moved up to release that memory. This is an extremely fast and efficient way to allocate storage, second only to registers.
+	- The heap. This is a general-purpose pool of memory (also in the RAM area) where all Java objects live. The nice thing about the heap is that, unlike the stack, the compiler doesn’t need to know how long that storage must stay on the heap. Thus, there’s a great deal of flexibility in using storage on the heap.
+	- Constant storage. Constant values are often placed directly in the program code, which is safe since they can never change.
+	- Non-RAM storage. If data lives completely outside a program, it can exist while the program is not running, outside the control of the program. The two primary examples of this are,
+		- streamed objects: in which objects are turned into streams of bytes, generally to be sent to another machine
+		- persistent objects: in which the objects are placed on disk so they will hold their state even when the program is terminated.
+		
+Special case: primitive types
+	- One group of types, which you’ll use quite often in your programming, gets special treatment. You can think of these as “primitive” types. The reason for the special treatment is that to create an object with new—especially a small, simple variable—isn’t very efficient, because new places objects on the heap. For these types Java falls back on the approach taken by C and C++. That is, instead of creating the variable by using new, an “automatic” variable is created that is not a reference. The variable holds the value directly, and it’s placed on the stack, so it’s much more efficient.
+	- The “wrapper” classes for the primitive data types allow you to make a non-primitive object on the heap to represent that primitive type.
+
+High-precision numbers
+	- Java includes two classes for performing high-precision arithmetic: BigInteger and BigDecimal. Although these approximately fit into the same category as the “wrapper” classes, neither one has a primitive analogue.
+	- You’re exchanging speed for accuracy if using these classes.
+
+- Java has a garbage collector, which looks at all the objects that were created with new and figures out which ones are not being referenced anymore. Then it releases the memory for those objects, so the memory can be used for new objects. This means that you never need to worry about reclaiming memory yourself. You simply create objects, and when you no longer need them, they will go away by themselves. This eliminates a certain class of programming problem: the so-called “memory leak,” in which a programmer forgets to release memory.
+- Each object keeps its own storage for its fields; ordinary fields are not shared among objects.
+
+- import tells the compiler to bring in a package, which is a library of classes.
+
+The static keyword
+	- You don’t actually get an object until you create one using new, and at that point storage is allocated and methods become available.
+	- When you say something is static, it means that particular field or method is not tied to any particular object instance of that class.
+	- With ordinary, non-static fields and methods, you must create an object and use that object to access the field or method, since non-static fields and methods must know the particular object they are working with.
+	- since static methods don’t need any objects to be created before they are used, they cannot directly access non-static members or methods by simply calling those other members without referring to a named object (since non-static members and methods must be tied to a particular object).
+	- With the this keyword in mind, you can more fully understand what it means to make a method static. It means that there is no this for that particular method. You cannot call non-static methods from inside static methods2 (although the reverse is possible), and you can call a static method for the class itself, without any object. In fact, that’s primarily what a static method is for. It’s as if you’re creating the equivalent of a global method. However, global methods are not permitted in Java, and putting the static method inside a class allows it access to other static methods and to static fields.	
+	
+Garbage collection
+	- Java has the garbage collector to reclaim the memory of objects that are no longer used. Now consider an unusual case: Suppose your object allocates “special” memory without using new. The garbage collector only knows how to release memory allocated with new, so it won’t know how to release the object’s “special” memory. To handle this case, Java provides a method called finalize( ) that you can define for your class. Here’s how it’s supposed to work. When the garbage collector is ready to release the storage used for your object, it will first call finalize( ), and only on the next garbage-collection pass will it reclaim the object’s memory. So if you choose to use finalize( ), it gives you the ability to perform some important cleanup at the time of garbage collection.
+	- The sole reason for the existence of the garbage collector is to recover memory that your program is no longer using. So any activity that is associated with garbage collection, most notably your finalize( ) method, must also be only about memory and its deallocation.
+	- Remember that neither garbage collection nor finalization is guaranteed. If the JVM isn’t close to running out of memory, then it might not waste time recovering memory through garbage collection.
+
+JIT (just-in-time)
+	- A JIT compiler partially or fully converts a program into native machine code so that it doesn’t need to be interpreted by the JVM and thus runs much faster. When a class must be loaded (typically, the first time you want to create an object of that class), the .class file is located, and the bytecodes for that class are brought into memory. At this point, one approach is to simply JIT compile all the code, but this has two drawbacks: It takes a little more time, which, compounded throughout the life of the program, can add up; and it increases the size of the executable (bytecodes are significantly more compact than expanded JIT code), and this might cause paging, which definitely slows down a program. An alternative approach is lazy evaluation, which means that the code is not JIT compiled until necessary. Thus, code that never gets executed might never be JIT compiled. The Java HotSpot technologies in recent JDKs take a similar approach by increasingly optimizing a piece of code each time it is executed, so the more the code is executed, the faster it gets.

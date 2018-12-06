@@ -1,0 +1,6 @@
+package com.lowes.inheritance;
+
+class MyClass {
+	class MyNestedClass {
+	}
+}

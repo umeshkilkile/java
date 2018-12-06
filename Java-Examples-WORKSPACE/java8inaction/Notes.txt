@@ -1,0 +1,270 @@
+Java 8 in Action
+
+- Java 8 provides a new API (called Streams) that supports many parallel operations to process
+	data and resembles the way you might think in database query languages—you express what you
+	want in a higher-level manner, and the implementation (here the Streams library) chooses the
+	best low-level execution mechanism. As a result, it avoids the need for you to write code that
+	uses synchronized, which is not only highly error prone but is also more expensive than you may
+	realize on multicore CPUs.
+- A stream is a sequence of data items that are conceptually produced one at a time
+- Stream<T> (interface) is a sequence of items of type T.
+- In the imperative programming paradigm you typically describe a program in terms of a sequence of statements that mutate state
+- What describes functional programming?
+	- Two of these points 
+		1. No shared mutable data and 
+		2. The ability to pass methods and functions—code—to other methods
+	 are the cornerstones of what’s generally described as the paradigm of functional programming,	
+
+- Lambdas (Anonymous functions)
+	- Java 8 allows a richer idea of functions as values, including lambdas (or anonymous functions).
+	- For example, you can now write (int x) -> x + 1 to mean 
+	  “the function that, when called with argument x, returns the value x + 1.”
+	- A lambda expression can be understood as a concise representation of an anonymous function
+		that can be passed around: it doesn’t have a name, but it has a list of parameters, a body, a
+		return type, and also possibly a list of exceptions that can be thrown.
+
+- Functional Programming
+	- The primary meaning of functional in functional programming means “using functions as first class values,” 
+	  it often has a secondary nuance of “no interaction during execution between components."
+
+- Behavior Parameterization
+	- Behavior parameterization means: the ability to tell a method to take multiple behaviors
+	(or strategies) as parameters and use them internally to accomplish different behaviors.
+- Functional interface
+	- A functional interface is an interface that specifies exactly one abstract method.
+	- E.g., 1: java.util.Comaparator
+			2: java.lang.Runnable
+			3: java.awt.event.ActionListener
+			4: java.util.concurrent.Callable
+			5: java.security.PrivilegedAction
+	- An interface is still a functional interface if it has many default methods as long as it
+	specifies only one abstract method.
+	- Lambda expressions let you provide the implementation of the abstract method of a functional interface directly inline 
+	and treat the whole expression as an instance of a functional interface
+	- @FunctionalInterface
+		- This annotation is used to indicate that the interface is intended to be a functional interface. 
+		- The compiler will return a meaningful error if you define an interface using the 
+		  @FunctionalInterface annotation and it isn’t a functional interface.
+		- Note that the @FunctionalInterface annotation isn’t mandatory, but it’s good practice to use it when an 
+		  interface is designed for that purpose.
+		- Functional interfaces are useful because the signature of the abstract method can describe the signature of a lambda expression. 
+		  The signature of the abstract method of a functional interface is called a function descriptor.
+		- Java 8's in built functional interfaces,
+			- java.util.function.Predicate<T>
+			- java.util.function.Consumer<T>
+			- java.util.function.Function<T, R>
+	- Closure
+		- a closure is an instance of a function that can reference nonlocal variables of that function with no restrictions. 
+		  For example, a closure could be passed as argument to another function. It could also access and modify variables 
+		  defined outside its scope.
+	- Streams
+		- A sequence of elements from a source that supports data processing operations.
+		- Collections are about data; streams are about computations
+		- Streams support database-like operations and common operations from functional programming languages to manipulate data, 
+		  such as filter, map, reduce, find,match, sort, and so on. 
+		- Stream operations can be executed either sequentially or in parallel.
+		- Streams are an update to the Java API that lets you manipulate collections of data in a
+		  declarative way (you express a query rather than code an ad hoc implementation for it). 
+		  For now you can think of them as fancy iterators over a collection of data.
+		- Streams can be processed in parallel transparently, without you having to write any multithreaded code.
+		- The Streams API in Java 8 lets you write code that’s
+			1. Declarative — More concise and readable
+			2. Composable — Greater flexibility
+			3. Parallelizable — Better performance
+		- Stream operations have two important characteristics
+			1. Pipelining— Many stream operations return a stream themselves, allowing operations to be chained and form a larger pipeline
+			2. Internal iteration— In contrast to collections, which are iterated explicitly using an iterator, stream operations do the iteration behind the scenes
+		- A collection is an in-memory data structure that holds all the values
+		- Similarly to iterators, a stream can be traversed only once.
+		- Stream operations
+			- Intermediate operations
+				- filter,sorted,map,limit etc
+			- Terminal operations
+				- collect
+		- Intermediate operations such as filter or sorted return another stream as the return type. 
+		  What’s important is that intermediate operations don’t perform any processing until a terminal operation is invoked on the stream
+		  pipeline—they’re lazy. This is because intermediate operations can usually be merged and
+		  processed into a single pass by the terminal operation.
+		- A stream is a sequence of elements from a source that supports data processing operations.
+		- Streams make use of internal iteration: the iteration is abstracted away through operations such as filter, map, and sorted.
+		- There are two types of stream operations: intermediate and terminal operations.
+		- Intermediate operations such as filter and map return a stream and can be chained together. 
+		  They’re used to set up a pipeline of operations but don’t produce any result.
+		- Terminal operations such as forEach and count return a nonstream value and process a stream pipeline to return a result.
+		- The elements of a stream are computed on demand.
+		
+		- The Streams API lets you express complex data processing queries.
+		- You can filter and slice a stream using the filter, distinct, skip, and limit methods.
+		- You can extract or transform elements of a stream using the map and flatMap methods.
+		- You can find elements in a stream using the findFirst and findAny methods. 
+		- You can match a given predicate in a stream using the allMatch, noneMatch, and anyMatch methods.
+		- These methods make use of short-circuiting: a computation stops as soon as a result is found; there’s no need to process the whole stream.
+		- You can combine all elements of a stream iteratively to produce a result using the reduce method, 
+			for example, to calculate the sum or find the maximum of a stream.
+		- Some operations such as filter and map are stateless; they don’t store any state. 
+			Some operations such as reduce store state to calculate a value. 
+			Some operations such as sorted and distinct also store state because they need to buffer all the elements of a stream before returning a new stream.
+			Such operations are called stateful operations.
+		- There are three primitive specializations of streams: IntStream, DoubleStream, and LongStream.
+			Their operations are also specialized accordingly.
+		- Streams can be created not only from a collection but also from values, arrays, files, and specific methods such as iterate and generate.
+		- An infinite stream is a stream that has no fixed size.
+		- When to use sequential and when to use parallel
+			- If in doubt, measure. Turning a sequential stream into a parallel one is trivial but not always the right thing to do. 
+				A parallel stream isn’t always faster than the corresponding sequential version. 
+				Moreover, parallel streams can sometimes work in a counterintuitive way, so the first and most important suggestion 
+				when choosing between sequential and parallel streams is to always check their performance with an appropriate benchmark.
+			- Watch out for boxing. Automatic boxing and unboxing operations can dramatically hurt performance.
+				Java 8 includes primitive streams (IntStream, LongStream, and DoubleStream) to avoid such operations, so use them when possible.
+			- Some operations naturally perform worse on a parallel stream than on a sequential stream. 
+				In particular, operations such as limit and findFirst that rely on the order of the elements are expensive
+				in a parallel stream. For example, findAny will perform better than findFirst because it isn’t
+				constrained to operate in the encounter order. You can always turn an ordered stream into an
+				unordered stream by invoking the method unordered on it. So, for instance, if you need N elements
+				of your stream and you’re not necessarily interested in the first N ones, calling limit on an unordered
+				parallel stream may execute more efficiently than on a stream with an encounter order (for example,
+				when the source is a List).
+			- Consider the total computational cost of the pipeline of operations performed by the stream. With N
+				being the number of elements to be processed and Q the approximate cost of processing one of these
+				elements through the stream pipeline, the product of N*Q gives a rough qualitative estimation of this
+				cost. A higher value for Q implies a better chance of good performance when using a parallel stream.
+			- For a small amount of data, choosing a parallel stream is almost never a winning decision. The
+				advantages of processing in parallel only a few elements aren’t enough to compensate for the
+				additional cost introduced by the parallelization process.
+			- Take into account how well the data structure underlying the stream decomposes. 
+				For instance, an ArrayList can be split much more efficiently than a LinkedList, because the first can be evenly
+				divided without traversing it, as it’s necessary to do with the second. 
+				Also, the primitive streams created with the range factory method can be decomposed quickly. 
+				Finally you can get full control of this decomposition process by implementing your own Spliterator.
+			- The characteristics of a stream, and how the intermediate operations through the pipeline modify
+				them, can change the performance of the decomposition process. For example, a SIZED stream can
+				be divided into two equal parts, and then each part can be processed in parallel more effectively, but a
+				filter operation can throw away an unpredictable number of elements, making the size of the stream
+				itself unknown.
+			- Consider whether a terminal operation has a cheap or expensive merge step (for example, the
+				combiner method in a Collector). If this is expensive, then the cost caused by the combination of the
+				partial results generated by each substream can outweigh the performance benefits of a parallel stream.
+			- Stream sources and decomposability
+				Source 			-	Decomposability
+				-----------			---------------
+				ArrayList 		- 	Excellent
+				LinkedList  	- 	Poor
+				IntStream.range - 	Excellent
+				Stream.iterate  - 	Poor
+				HashSet 		- 	Good		
+				TreeSet 		- 	Good
+			- Finally, we need to emphasize that the infrastructure used behind the scenes by parallel streams
+				to execute operations in parallel is the fork/join framework introduced in Java 7.
+		- The fork/join framework
+			- The fork/join framework was designed to recursively split a parallelizable task into smaller tasks
+				and then combine the results of each subtask to produce the overall result. It’s an
+				implementation of the ExecutorService interface, which distributes those subtasks to worker
+				threads in a thread pool, called ForkJoinPool.
+			- To submit tasks to this pool, you have to create a subclass of 
+				RecursiveTask<R>, 
+					- where R is the type of the result produced by the parallelized task (and each of its subtasks) or of
+				RecursiveAction 
+					- if the task returns no result (it could be updating other nonlocal structures, though). 
+				To define RecursiveTasks you need only implement its single abstract method, compute:
+					protected abstract R compute();
+				This method defines both the logic of splitting the task at hand into subtasks and the algorithm
+					to produce the result of a single subtask when it’s no longer possible or convenient to further divide it.
+				For this reason an implementation of this method often resembles the following pseudocode:
+					if (task is small enough or no longer divisible) {
+						compute task sequentially
+					} else {
+						split task in two subtasks
+						call this method recursively possibly further splitting each subtask
+						wait for the completion of all subtasks
+						combine the results of each subtask
+					}
+		- Converting anonymous classes to lambda expressions can be a difficult process in certain situations.
+			- First, the meanings of this and super are different for anonymous classes and
+				lambda expressions. Inside an anonymous class, this refers to the anonymous class itself, but
+				inside a lambda it refers to the enclosing class.
+			- Second, anonymous classes are allowed to shadow variables from the enclosing class. Lambda expressions can’t (they’ll cause a compile
+				error)
+		- You can’t use lambda expressions without functional interfaces. You should therefore start
+			introducing them in your codebase.
+		- When to use lambda expressions?
+			- Conditional deferred execution
+			- Execute around
+		
+		- Lambda expressions can make your code more readable and flexible.
+		- Consider converting anonymous classes to lambda expressions, but be wary of subtle semantic differences such as the meaning of the keyword 
+			this and shadowing of variables.
+		- Method references can make your code more readable compared to lambda expressions.
+        - Consider converting iterative collection processing to use the Streams API.
+		- Lambda expressions can help remove boilerplate code associated with several object-oriented design patterns such as strategy, 
+			template method, observer, chain of responsibility, and factory.
+		- Lambda expressions can be unit tested, but in general you should focus on testing the behavior of the methods where the lambda expressions appear.
+		- Consider extracting complex lambda expressions into regular methods.
+		- Lambda expressions can make stack traces less readable.
+		- The peek method of a stream is useful to log intermediate values as they flow past at certain points in a stream pipeline.
+		
+	- New Date and Time API
+		- The DateFormat also comes with its own set of problems. For example, it isn’t thread-safe. This
+		  means that if two threads try to parse a date using the same formatter at the same time, you may
+		  receive unpredictable results.
+		- Both Date and Calendar are mutable classes
+	- Functional Programming
+		- An immutable object is an object that can’t change its state after it’s instantiated so it can’t be
+			affected by the actions of a function. This means that once immutable objects are instantiated,
+			they can never go into an unexpected state. You can share them without having to copy them,
+			and they’re thread-safe because they can’t be modified.
+		- A method, which modifies neither the state of its enclosing class nor
+			the state of any other objects and returns its entire results using return, is called pure or
+			side-effect free.
+		- An immutable object is an object that can’t change its state after it’s instantiated so it can’t be
+			affected by the actions of a function. This means that once immutable objects are instantiated,
+			they can never go into an unexpected state. You can share them without having to copy them,
+			and they’re thread-safe because they can’t be modified.
+		- Declarative programming, upon which functional programming is based.
+		- Imperative programming
+			e.g.,
+				Transaction mostExpensive = transactions.get(0);
+				if(mostExpensive == null)
+					throw new IllegalArgumentException("Empty list of transactions")
+				for(Transaction t: transactions.subList(1, transactions.size())){
+					if(t.getValue() > mostExpensive.getValue()){
+						mostExpensive = t;
+					}
+				}
+		- Declarative programming
+			e.g.,
+				Optional<Transaction> mostExpensive = transactions.stream().max(comparing(Transaction::getValue));
+				
+		- Functional Programming
+			- In the context of functional programming a function corresponds to a mathematical
+			function: it takes zero or more arguments, gives one or more results, and has no side effects.
+			You can see it as a black box, which takes some inputs and produces some outputs
+		- Thinking in terms of side-effect-free methods can help you write more maintainable code.
+		- Functions may be used like other values: passed as arguments, returned as results, and stored in
+			data structures. Such functions that may be used like other values are referred to as first-class functions.
+		- You may use any method as a function value, using the :: operator to create a method reference, and lambda
+			expressions (for example, (int x) -> x + 1) to directly express function values. 
+		- In Java 8 it’s perfectly valid to store the method Integer.parseInt in a variable by using a method reference as follows:
+			- Function<String, Integer> strToInt = Integer::parseInt;
+		- Functions (like Comparator.comparing) that can do at least one of the following are called higher-order functions within 
+			the functional programming community:
+			- Take one or more functions as parameter
+			- Return a function as result
+		- The first thing to note is that a functional-style method isn’t allowed to update any global data
+			structure or any structure passed as a parameter.
+		
+		- Following are the key concepts you should take away from FP programming.
+			- First-class functions are functions that can be passed as arguments, returned as results, and stored in
+				data structures.
+			- A higher-order function is a function that takes at least one or more functions as input or returns
+				another function. Typical higher-order functions in Java include comparing, andThen, and
+				compose.
+			- Currying is a technique that lets you modularize functions and reuse code.
+			- A persistent data structure preserves the previous version of itself when it’s modified. As a result, it
+				can prevent unnecessary defensive copying.
+			- Streams in Java can’t be self-defined.
+			- A lazy list is a more expressive version of a Java stream. A lazy list lets you produce elements of the list
+				on demand by using a supplier that can create more of the data structure.
+			- Pattern matching is a functional feature that lets you unwrap data types. It can be seen as generalizing
+				Java’s switch statement.
+			- Referential transparency allows computations to be cached.
+			- Combinators are a functional idea that combines two or more functions or other data structures.

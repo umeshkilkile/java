@@ -1,0 +1,56 @@
+DeQueue Interface
+	- Usually pronounced as deck, a deque is a double-ended-queue.
+	- A double-ended-queue is a linear collection of elements that supports the insertion and removal of elements at both end points.
+	- The Deque interface is a richer abstract data type than both Stack and Queue because it implements both stacks and queues at the same time.
+	- The Deque interface, defines methods to access the elements at both ends of the Deque instance. Methods are provided to insert, remove, and examine the elements. Predefined classes like ArrayDeque and LinkedList implement the Deque interface.
+	- Note that the Deque interface can be used both as last-in-first-out stacks and first-in-first-out queues.
+	- A deque (double-ended queue) is like a queue, but you can add and remove elements from either end. There are methods in LinkedList that support deque operations, but there is no explicit interface for a deque in the Java standard libraries. Thus, LinkedList cannot implement this interface and you cannot upcast to a Deque interface as you can to a Queue in the previous example. However, you can create a Deque class using composition, and simply expose the relevant methods from LinkedList:
+	
+							DeQueue
+							   |
+							   |
+				---------------------------------
+				|								|
+			LinkedList					    ArrayDeque
+
+##############################DeQueue#########################################################
+
+package java.util;
+
+public interface Deque<E> extends Queue<E> {
+    void addFirst(E e);
+    void addLast(E e);
+    boolean offerFirst(E e);
+    boolean offerLast(E e);
+    E removeFirst();
+    E removeLast();
+    E pollFirst();
+    E pollLast();
+    E getFirst();
+    E getLast();
+    E peekFirst();
+    E peekLast();
+    boolean removeFirstOccurrence(Object o);
+    boolean removeLastOccurrence(Object o);
+
+    // *** Queue methods ***
+    boolean add(E e);
+    boolean offer(E e);
+    E remove();
+    E poll();
+    E element();
+    E peek();
+
+    // *** Stack methods ***
+    void push(E e);
+    E pop();
+
+    // *** Collection methods ***
+    boolean remove(Object o);
+    boolean contains(Object o);
+    public int size();
+    Iterator<E> iterator();
+    Iterator<E> descendingIterator();
+}
+
+##############################DeQueue#########################################################											   

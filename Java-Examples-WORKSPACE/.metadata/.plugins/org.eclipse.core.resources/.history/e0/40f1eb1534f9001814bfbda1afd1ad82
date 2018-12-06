@@ -1,0 +1,7 @@
+package com_16.lowes.polymorphism;
+
+class Lettuce {
+	Lettuce() {
+		System.out.println("Lettuce()");
+	}
+}

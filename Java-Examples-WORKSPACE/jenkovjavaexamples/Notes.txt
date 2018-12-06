@@ -1,0 +1,98 @@
+Java
+	- Java was originally a programming language
+	- Over time Java has evolved into more than just a language. 
+		It is a full platform with lots of standard APIs, open source APIs, tools, a big developer community with millions of developers etc.
+	- Java files are stored in files suffixed with .java . These files are then compiled into Java byte code using the Java compiler, and the byte code is then executed using the Java Virtual Machine (JVM). 
+		The Java compiler and the JVM are part of the Java Development Kit.
+	- The Java bytecode is stored in binary .class files.
+	- Java is an interpreted language. What does that mean? Well, the Java language is compiled into Java bytecode. 
+		This Java bytecode is then executed by the Java Virtual Machine.
+	- The Java Virtual Machine is a program itself. You start up the JVM and tell it what Java code to execute.
+	- The Java language enables you to package components written in the Java language into APIs (Application Programming Interfaces) which 
+		can be used by others in their Java applications. Java comes bundled with a lot such components. 
+		These components are known as the standard Java APIs . These APIs enable your Java programs to access the local file system, 
+		the network and many other things.
+	- APIs help you develop your applications faster.
+	- The Java Runtime Environment (JRE) is the Java Virtual Machine and the standard Java APIs coming with Java Standard Edition (JSE). T
+		he JRE contains enough to execute a Java application, but not to compile it.
+	- The Java Software Development Kit (Java SDK) is the JRE plus the Java compiler, and a set of other tools. 
+    - Only the full Java SDK contains the Java compiler which turns your .java source files into byte code .class files.
+
+Java Editions
+	JSE
+		- The Java Standard Edition for desktop and stand alone server applications.
+	JEE
+		- The Java Enterprise Edition for developing and executing Java components that run embedded in a Java server.
+		- The Java Enterprise Edition contains a lot of extra tools and APIs for executing Java components inside a Java Enterprise Server. Examples of enterprise Java components are:
+
+			- Servlets
+			- Java Server Pages (JSP)
+			- Java Server Faces (JSF)
+			- Enterprise Java Beans (EJB)
+			- Two-phase commit transactions
+			- Java Message Service message queue APIs (JMS)
+		- The Java Enterprise Edition is only a specification. Software vendors like IBM, Oracle etc. are free to implement this specification. 
+			And they have IBM WebSphere, Redhat JBoss, Oracle WebLogic etc. 
+			Their implementations are usually called Java Application Servers, because the servers are capable of running Java applications, while offering a lot of standardized services to these Java applications.
+	JME
+		- The Java Micro Edition for developing and executing Java applications on mobile phones and embedded devices.
+		
+- java -version
+- If you are maintaining older Java projects you may need to have multiple Java SDKs installed. This is possible. However, typically it will be the latest version which is executed when you type java in the command prompt.
+- java -cp classes myjavacode.MyClass
+	- cp (class path)
+
+Class
+	- The class is like a template (or blueprint) telling how objects of that class should look.
+	- A Java class can contain fields, constructors and methods.
+
+Objects
+	- Objects are instances of classes. When you create an object, that object is of a certain class.
+	- When you create an object, you say "give me an object of this class".
+
+Constructors
+	- Constructors are a special kind of method that is executed when an object of that class is created. 
+	- Constructors typically initialize the objects internal fields - if necessary.
+
+Methods
+	- Methods are groups of operations that carry out a certain function together.		
+
+Continue
+	- Java contains a continue command which can be used inside Java for (and while) loops. 
+		The continue command is placed inside the body of the for loop. When the continue command is met, 
+		the Java Virtual Machine jumps to the next iteration of the loop without executing more of the for loop body. 
+	- The next iteration of the for loop body will proceed as any other. If that iteration also meets the continue command, that iteration 
+		too will skip to the next iteration, and so forth.
+Break
+	- The break command is a command that works inside Java for (and while) loops. 
+		When the break command is met, the Java Virtual Machine breaks out of the for loop, even if the loop condition is still true. 
+		No more iterations of the for loop are executed once a break command is met.
+Java Classes
+	- Java classes are a mechanism used to group data (variables) and Java code (methods) which belong together into coherent "modules".		 	
+	- A Java class can contain:
+		Fields
+		Constructors
+		Methods
+	- Fields are variables (data) that are local to the class, or instances (objects) of that class.
+	- Constructors are methods that initialize an instance of the class. Constructors often sets the values of fields in the given instance.
+	- Methods are operations that the class or instances of that class can perform. For instance, a method may perform an operation on input parameters, or change the value of fields kept internally in the object etc.
+	- A Java class is a template for how objects of that class looks.
+	- Creating an object of a certain class is also called "instantiating" an object. The object is thus also called an "instance" of the given class.
+	- Static Java fields are located in the class, not in the instances of the class.
+	- Non-static Java fields are located in the instances of the class.
+	- Static fields are created when the class is loaded. A class is loaded the first time it is referenced in your program. Non-static fields are created when the object owning them are created.
+Java Methods
+	- Java methods are similar to what is called functions or procedures in other programming languages (e.g. Pascal or JavaScript). A method is a group of Java statements that perform some operation on some data, and may or may not return a result.
+	- Java constructors are special methods that are called when an object is instantiated. In other words, when you use the new keyword. The constructor initializes the newly created object.
+	- A Java class constructor initializes instances (objects) of that class. Typically, the constructor initializes the fields of the object that need initialization.
+	- A class that extends another class does not inherit its constructors. However, the subclass must call a constructor in the superclass inside one of the subclass constructors!
+private Access Modifier
+	- If a method or variable is marked as private (has the private access modifier assigned to it), then only code inside the same class can access the variable, or call the method. Code inside subclasses cannot access the variable or method, nor can code from any external class.	
+	- If a constructor in a class is assigned the private Java access modifier, that means that the constructor cannot be called from anywhere outside the class. A private constructor can still get called from other constructors, or from static methods in the same class.
+	- Classes can only have the default (package) and public access modifier assigned to them.
+	- Classes cannot be marked with the private access modifier. Marking a class with the private access modifier would mean that no other class could access it, which means that you could not really use the class at all. Therefore the private access modifier is not allowed for classes.
+Access Modifiers and Inheritance
+	- When you create a subclass of some class, the methods in the subclass cannot have less accessible access modifiers assigned to them than they had in the superclass. For instance, if a method in the superclass is public then it must be public in the subclass too, in case the subclass overrides the method. If a method in the superclass is protected then it must be either protected or public in the subclass.
+	- While it is not allowed to decrease accessibility of an overridden method, it is allowed to expand accessibility of an overridden method. For instance, if a method is assigned the default access modifier in the superclass, then it is allowed to assign the overridden method in the subclass the public access modifier.	
+
+		 

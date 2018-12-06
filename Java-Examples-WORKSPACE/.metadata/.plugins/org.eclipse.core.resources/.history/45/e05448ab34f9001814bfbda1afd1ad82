@@ -1,0 +1,4 @@
+package com_35.lowes.exceptions;
+
+class Foul extends BaseballException {
+}

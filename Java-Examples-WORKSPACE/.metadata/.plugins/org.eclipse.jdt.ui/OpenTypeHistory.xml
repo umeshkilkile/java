@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=java8inaction/C:\/Program Files \(x86)\/Java\/jdk1.8.0_40\/jre\/lib\/rt.jar&lt;javax.xml.bind(ValidationEventLocator.class[ValidationEventLocator" modifiers="1537" timestamp="1482316376972"/>
+<typeInfo handle="=java8inaction/src&lt;com.lowes.refactoringoldcode{ValidationStrategy.java[ValidationStrategy" modifiers="513" timestamp="1517203117966"/>
+<typeInfo handle="=java8inaction/src&lt;com.lowes.refactoringoldcode{Observer.java[Observer" modifiers="513" timestamp="1517218776355"/>
+<typeInfo handle="=java8inaction/src&lt;com.lowes.refactoringoldcode{Subject.java[Subject" modifiers="513" timestamp="1517218916583"/>
+<typeInfo handle="=java8inaction/src&lt;com.lowes.refactoringoldcode{Product.java[Product" modifiers="513" timestamp="1517220870547"/>
+<typeInfo handle="=java8inaction/src&lt;com.lowes.defaultmethods{Drawable.java[Drawable" modifiers="513" timestamp="1517398802325"/>
+<typeInfo handle="=java8inaction/src&lt;com.lowes.defaultmethods{Resizable.java[Resizable" modifiers="513" timestamp="1517401078772"/>
+<typeInfo handle="=java8inaction/src&lt;com.lowes.defaultmethods{A.java[A" modifiers="513" timestamp="1517562955056"/>
+<typeInfo handle="=java8inaction/C:\/Program Files \(x86)\/Java\/jdk1.8.0_40\/jre\/lib\/rt.jar&lt;java.time.temporal(TemporalAdjuster.class[TemporalAdjuster" modifiers="1537" timestamp="1482316376972"/>
+<typeInfo handle="=java8inaction/C:\/Program Files \(x86)\/Java\/jdk1.8.0_40\/jre\/lib\/rt.jar&lt;java.time.temporal(Temporal.class[Temporal" modifiers="1537" timestamp="1482316376972"/>
+</typeInfoHistroy>

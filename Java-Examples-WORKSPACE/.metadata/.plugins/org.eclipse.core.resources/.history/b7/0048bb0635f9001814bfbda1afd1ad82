@@ -1,0 +1,5 @@
+package com.lowes.rtti;
+
+public interface A {
+	void f();
+}

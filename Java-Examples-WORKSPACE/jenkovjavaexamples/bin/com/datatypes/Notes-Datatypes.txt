@@ -1,0 +1,14 @@
+Data types
+	- Each variable in Java has a data type. Data types into two groups:
+		1. Primitive data types
+			- A variable takes up a certain amount of space in memory. How much memory a variable takes depends on its data type.
+			- A variable of a primitive data type contains the value of the variable directly in the memory allocated to the variable.
+		2. Object references
+			- A variable of an object type is also called a reference. 
+			- The variable itself does not contain the object, but contains a reference to the object. 
+			- The reference points to somewhere else in memory where the whole object is stored. 
+			- Via the reference stored in the variable you can access fields and methods of the referenced object. 
+			- It is possible to have many different variables reference the same object. This is not possible with primitive data types.
+
+The Java Math Class
+	- The Math is located in the java.lang package, and not in the java.math package. Thus, the fully qualified class name of the Math class is java.lang.Math			

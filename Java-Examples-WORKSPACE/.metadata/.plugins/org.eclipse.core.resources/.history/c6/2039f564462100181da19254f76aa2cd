@@ -1,0 +1,16 @@
+package com.lowes.reflections;
+
+/*
+ * Java code to demonstrate use of Class object created by JVM
+ */
+public class ClassDemo_1 {
+	public static void main(String[] args) {
+		Student s1 = new Student();
+
+		Class c1 = s1.getClass();
+		/*
+		 * Getting hold of object using c1
+		 */
+		System.out.println();
+	}
+}

@@ -1,0 +1,5 @@
+package com.lowes.interfaces;
+
+public interface MyOtherInterface {
+	public void sayGoodbye();
+}

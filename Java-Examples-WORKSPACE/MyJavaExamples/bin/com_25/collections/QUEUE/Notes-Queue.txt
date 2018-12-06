@@ -1,0 +1,30 @@
+Queue Interface
+	- A Queue is a collection for holding elements prior to processing.
+	- Besides basic Collection operations, queues provide additional insertion, removal, and inspection operations.
+	- LinkedList has methods to support queue behavior and it implements the Queue interface, so a LinkedList can be used as a Queue implementation.
+	- The remove and poll methods both remove and return the head of the queue.
+	- The element and peek methods return, but do not remove, the head of the queue.
+	
+							Queue
+							  |
+							  |
+			-------------------------------------
+			|									|
+		LinkedList					      PriorityQueue
+	
+##############################Queue#########################################################
+package java.util;
+
+public interface Queue<E> extends Collection<E> {
+    boolean add(E e);
+    boolean offer(E e);
+    E remove();
+    E poll();
+    E element();
+    E peek();
+}
+##############################Queue#########################################################
+
+- The java.util.Queue interface is a subtype of the java.util.Collection interface. 
+	It represents an ordered list of objects just like a List, but its intended use is slightly different. 
+	A queue is designed to have elements inserted at the end of the queue, and elements removed from the beginning of the queue.

@@ -1,0 +1,7 @@
+package com.lowes.rtti;
+
+class Gum {
+	static {
+		System.out.println("Loading Gum");
+	}
+}

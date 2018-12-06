@@ -1,0 +1,5 @@
+Holding references
+	- If an object is reachable, it means that somewhere in your program the object can be found.
+	- This could mean that you have an ordinary reference on the stack that goes right to the object, but you might also have a reference to an object that has a reference to the object in question; there can be many intermediate links.
+	- If an object is reachable, the garbage collector cannot release it because it’s still in use by your program. If an object isn’t reachable, there’s no way for your program to use it, so it’s safe to garbage collect that object.
+	

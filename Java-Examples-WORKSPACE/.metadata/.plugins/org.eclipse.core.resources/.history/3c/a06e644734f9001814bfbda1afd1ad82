@@ -1,0 +1,18 @@
+package com_21.lowes.generics;
+
+public class B extends A {
+	String name;
+
+	B() {
+
+	}
+
+	B(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return this.name;
+	}
+}

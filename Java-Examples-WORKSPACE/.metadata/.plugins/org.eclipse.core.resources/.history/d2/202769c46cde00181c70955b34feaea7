@@ -1,0 +1,15 @@
+package com_22.lowes.collections.COLLECTION;
+
+public class Pair<K, V> {
+	public final K key;
+	public final V value;
+
+	public Pair(K k, V v) {
+		key = k;
+		value = v;
+	}
+}
+/*
+ * The key and value fields are made public and final so that Pair becomes a
+ * read-only Data Transfer Object (or Messenger).
+ */

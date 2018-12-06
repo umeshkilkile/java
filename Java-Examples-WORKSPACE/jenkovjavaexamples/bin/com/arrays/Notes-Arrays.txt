@@ -1,0 +1,11 @@
+Java Arrays
+	- An array is a collection of variables of the same type.
+	- The variables in the array are ordered and each have an index.
+	- You can use a Java array as a field, static field, a local variable, or parameter, just like any other variable.
+	- String[]  stringArray;
+		- an array of String references.
+	- MyClass[] myClassArray;
+		- an array of references to objects of the class MyClass
+	
+	- Java's primitive data types have a natural ordering, either their numeric order, 
+		or the order of the characters in the ASCII table (the binary number representing the character).

@@ -1,0 +1,14 @@
+Arrays
+	- When you create an array of objects, you are really creating an array of references, and each of those references is automatically initialized to a special value with its own keyword: null.
+	- When Java sees null, it recognizes that the reference in question isn’t pointing to an object. You must assign an object to each reference before you use it, and if you try to use a reference that’s still null, the problem will be reported at run time.
+	- You can also create an array of primitives. Again, the compiler guarantees initialization because it zeroes the memory for that array.
+	- There are three issues that distinguish arrays from other types of containers: 
+		efficiency, 
+		type, and 
+		the ability to hold primitives.
+	- The array is Java’s most efficient way to store and randomly access a sequence of object references.
+	- The array is a simple linear sequence, which makes element access fast. The cost of this speed is that the size of an array object is fixed and cannot be changed for the lifetime of that array.
+	- Whether you’re using an array or a container, you’ll get a RuntimeException if you exceed the bounds, indicating a programmer error.
+	- Regardless of what type of array you’re working with, the array identifier is actually a reference to a true object that’s created on the heap. This is the object that holds the references to the other objects, and it can be created either implicitly, as part of the array initialization syntax, or explicitly with a new expression.
+	- Arrays of objects and arrays of primitives are almost identical in their use. The only difference is that arrays of objects hold references, but arrays of primitives hold the primitive values directly.
+	

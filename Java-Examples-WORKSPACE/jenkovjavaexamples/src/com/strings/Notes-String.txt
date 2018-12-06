@@ -1,0 +1,11 @@
+Strings
+	- The Java String data type can contain a sequence (string) of characters, like pearls on a string.
+	- A Java String (before Java 9) is represented internally in the Java VM using bytes, encoded as UTF-16. 
+		UTF-16 uses 2 bytes to represent a single character. 
+		Thus, the characters of a Java String are represented using a char array.
+	- UTF is a character encoding that can represent characters from a lot of different languages (alphabets). 
+		That is why it is necessary to use 2 bytes per character - to be able to represent all these different characters within a single string.
+	- Strings in Java are objects. Therefore you need to use the new operator to create a new Java String object.
+	- More precisely, objects representing Java String literals are obtained from a constant String pool which the Java virtual machine 
+		keeps internally. That means, that even classes from different projects compiled separately, but which are used in the same 
+		application may share constant String objects. The sharing happens at runtime. It is not a compile time feature.

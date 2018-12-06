@@ -1,0 +1,16 @@
+Reflection: runtime class information
+	- Reflection provides the mechanism to detect the available methods and produce the method names.
+	- Another compelling motivation for discovering class information at run time is to provide the ability to create and execute objects on remote platforms, across a network. This is called Remote Method Invocation (RMI), and it allows a Java program to have objects distributed across many machines.
+	- The class Class supports the concept of reflection, along with the java.lang.reflect library which contains the classes Field, Method, and Constructor (each of which implements the Member interface).
+	- Objects of these types are created by the JVM at run time to represent the corresponding member in the unknown class. You can then use the Constructors to create new objects, the get( ) and set( ) methods to read and modify the fields associated with Field objects, and the invoke( ) method to call a method associated with a Method object.
+	- In addition, you can call the convenience methods getFields( ), getMethods( ), getConstructors( ), etc., to return arrays of the objects representing the fields, methods, and constructors.
+	- Thus, the class information for anonymous objects can be completely determined at run time, and nothing need be known at compile time.
+	- The true difference between RTTI and reflection is that with RTTI, the compiler opens and examines the .class file at compile time. Put another way, you can call all the methods of an object in the "normal" way. With reflection, the .class file is unavailable at compile time; it is opened and examined by the runtime environment.
+	- Fortunately, reflection provides a way to write a simple tool that will automatically show you the entire interface.
+
+Dynamic proxies
+	- Proxy is one of the basic design patterns. It is an object that you insert in place of the "real" object in order to provide additional or different operations—these usually involve communication with a "real" object, so a proxy typically acts as a go-between.	
+	- A proxy can be helpful anytime you’d like to separate extra operations into a different place than the "real object," and especially when you want to easily change from not using the extra operations to using them, and vice versa (the point of design patterns is to encapsulate change—so you need to be changing things in order to justify the pattern).
+
+Null Objects
+	- When you use the built-in null to indicate the absence of an object, you must test a reference for null-ness every time you use it.	

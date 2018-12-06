@@ -1,0 +1,39 @@
+SortedSet Interface
+	- A SortedSet is a Set that maintains its elements in ascending order, sorted according to the 
+		elements' natural ordering or according to a Comparator provided at SortedSet creation time.
+	- The Iterator returned by the iterator operation traverses the sorted set in order.
+    - The array returned by toArray contains the sorted set's elements in order.
+    - Although the interface doesn't guarantee it, the toString method of the Java platform's SortedSet 
+    	implementations returns a string containing all the elements of the sorted set, in order.
+
+############################## SortedSet ##############################
+package java.util;
+
+public interface SortedSet<E> extends Set<E> {
+	// Comparator access
+    Comparator<? super E> comparator();
+    
+    // Range-view
+    SortedSet<E> subSet(E fromElement, E toElement);
+    SortedSet<E> headSet(E toElement);
+    SortedSet<E> tailSet(E fromElement);
+    
+    // Endpoints
+    E first();
+    E last();
+    @Override
+    default Spliterator<E> spliterator() {
+        return new Spliterators.IteratorSpliterator<E>(
+                this, Spliterator.DISTINCT | Spliterator.SORTED | Spliterator.ORDERED) {
+            @Override
+            public Comparator<? super E> getComparator() {
+                return SortedSet.this.comparator();
+            }
+        };
+    }
+}
+############################## SortedSet ##############################
+
+- The java.util.NavigableSet interface is a subtype of the java.util.SortedSet interface. 
+	It behaves like a SortedSet with the exception you have navigation methods available in addition to the sorting mechanisms of the SortedSet. 
+	

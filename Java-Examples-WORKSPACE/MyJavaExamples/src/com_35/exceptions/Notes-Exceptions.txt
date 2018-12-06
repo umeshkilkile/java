@@ -1,0 +1,21 @@
+Exceptions
+	- When you throw an exception, several things happen. First, the exception object is created in the same way that any Java object is created: on the heap, with new.
+	- As with any object in Java, you always create exceptions on the heap using new, which allocates storage and calls a constructor. There are two constructors in all standard exceptions: The first is the default constructor, and the second takes a string argument so that you can place pertinent information in the exception:
+	
+	Exception Hierarchy
+				
+								Throwable
+									|
+					---------------------------------
+					|
+				Exception
+
+- Exceptions that are checked and enforced at compile time are called checked exceptions.
+- The Java class Throwable describes anything that can be thrown as an exception.
+- There are two general types of Throwable objects
+	1. Error
+	2. Exception
+- Error represents compile-time and system errors that you don’t worry about catching (except in very special cases).					
+- Exception is the basic type that can be thrown from any of the standard Java library class methods and from your methods and runtime accidents. So the Java programmer’s base type of interest is usually Exception.
+- You never need to write an exception specification saying that a method might throw a RuntimeException (or any type inherited from RuntimeException), because they are unchecked exceptions.
+- The finally clause is necessary when you need to set something other than memory back to its original state. This is some kind of cleanup like an open file or network connection

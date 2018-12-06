@@ -1,0 +1,5 @@
+package com_15.lowes.inheritance;
+
+public interface Mammal {
+	String identifyMyself();
+}

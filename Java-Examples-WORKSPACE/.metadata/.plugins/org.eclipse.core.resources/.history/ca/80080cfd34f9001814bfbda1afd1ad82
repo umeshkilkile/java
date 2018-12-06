@@ -1,0 +1,5 @@
+package com.lowes.nestedclasses;
+
+interface Incrementable {
+	void increment();
+}

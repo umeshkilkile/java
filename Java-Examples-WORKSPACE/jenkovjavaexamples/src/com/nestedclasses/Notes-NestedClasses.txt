@@ -1,0 +1,12 @@
+Nested Classes
+	- In Java nested classes are classes that are defined inside another class.
+	- The purpose of a nested class is to clearly group the nested class with its surrounding class, signaling that these two classes 
+		are to be used together. Or perhaps that the nested class is only to be used from inside its enclosing (owning) class.
+	- Java developers often refer to nested classes as inner classes, but inner classes (non-static nested classes) are only one out of several different types of nested classes in Java.
+	- In Java nested classes are considered members of their enclosing class. Thus, a nested class can be declared public, package (no access modifier), protected and private
+	- You can create several different types of nested classes in Java. The different Java nested class types are:
+
+		- Static nested classes
+		- Non-static nested classes
+		- Local classes
+		- Anonymous classes

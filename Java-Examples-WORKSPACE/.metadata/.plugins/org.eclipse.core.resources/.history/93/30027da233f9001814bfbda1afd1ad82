@@ -1,0 +1,11 @@
+package com.lowes.abstractclasses;
+
+public class MyAbstractProcessSubclass extends MyAbstractProcess {
+
+	@Override
+	public void action() {
+		System.out.println("action");
+
+	}
+
+}

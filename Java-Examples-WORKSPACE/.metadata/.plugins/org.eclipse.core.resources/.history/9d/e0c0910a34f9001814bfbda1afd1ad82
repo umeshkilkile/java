@@ -1,0 +1,5 @@
+package com_14.lowes.interfaces;
+
+interface Vampire extends DangerousMonster, Lethal {
+	void drinkBlood();
+}

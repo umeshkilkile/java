@@ -1,0 +1,5 @@
+package com.lowes.micellaneous;
+
+public class StaticKeyword_Demo {
+	static int i = 47;
+}

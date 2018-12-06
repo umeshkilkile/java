@@ -1,0 +1,6 @@
+package com.lambdasinaction;
+
+public interface Predicate<T> {
+
+	boolean test(T t);
+}

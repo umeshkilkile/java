@@ -1,0 +1,39 @@
+- So, when are two objects equal? That depends on your application, the classes, and what you are trying to do. 
+- hashcode()
+	- The hashCode() method of objects is used when you insert them into a HashTable, HashMap or HashSet. 
+	- When inserting an object into a hastable you use a key. The hash code of this key is calculated, and used to determine where to store the object internally. When you need to lookup an object in a hashtable you also use a key. The hash code of this key is calculated and used to determine where to search for the object.
+	- The hash code only points to a certain "area" (or list, bucket etc) internally. Since different key objects could potentially have the same hash code, the hash code itself is no guarantee that the right key is found. The hashtable then iterates this area (all keys with the same hash code) and uses the key's equals() method to find the right key. Once the right key is found, the object stored for that key is returned.
+	- So, as you can see, a combination of the hashCode() and equals() methods are used when storing and when looking up objects in a hashtable.
+	- Here are two rules that are good to know about implementing the hashCode() method in your own classes, if the hashtables in the Java Collections API are to work correctly:
+
+		1. If object1 and object2 are equal according to their equals() method, they must also have the same hash code.
+		2. If object1 and object2 have the same hash code, they do NOT have to be equal too.
+	- In shorter words:
+
+		1. If equal, then same hash codes too.
+		2. Same hash codes no guarantee of being equal.
+
+- The hashCode( ) is not required to return a unique identifier, but the equals() method must strictly determine whether two objects are equivalent.
+- The whole point of hashing is speed: Hashing allows the lookup to happen quickly.		
+- Hashing goes further by saying that all you want to do is to store the key somewhere in a way that it can be found quickly. 
+	The fastest structure in which to store a group of elements is an array, so that will be used for representing the key information 
+	(note that I said "key information," and not the key itself). But because an array cannot be resized, we have a problem: We want to store 
+	an indeterminate number of values in the Map, but if the number of keys is fixed by the array size, how can this be?
+	- The answer is that the array will not hold the keys. From the key object, a number will be derived that will index into the array. 
+	This number is the hash code, produced by the hashCode() method (in computer science parlance, this is the hash function) 
+	defined in Object and presumably overridden by your class.
+	- To solve the problem of the fixed-size array, more than one key may produce the same index. That is, there may be collisions. 
+	Because of this, it doesn’t matter how big the array is; any key object’s hash code will land somewhere in that array.
+	- So the process of looking up a value starts by computing the hash code and using it to index into the array. 
+	If you could guarantee that there were no collisions (which is possible if you have a fixed number of values), then you’d have a perfect hashing function, 
+	but that’s a special case. 
+	In all other cases, collisions are handled by external chaining: The array doesn’t point directly to a value, but instead to a list of values. 
+	These values are searched in a linear fashion using the equals( ) method. Of course, this aspect of the search is much slower, but if the hash function is good, 
+	there will only be a few values in each slot. So instead of searching through the entire list, you quickly jump to a slot where you only have to compare a few entries to find the value. 
+	This is much faster, which is why the HashMap is so quick.
+
+- Because the "slots" in a hash table are often referred to as buckets, the array that represents the actual table is called buckets. To promote even distribution, the number of buckets is typically a prime number
+
+- For a put( ), the hashCode( ) is called for the key and the result is forced to a positive number. To fit the resulting number into the buckets array.
+- The get( ) calculates the index into the buckets array in the same fashion as put( ) (this is important in order to guarantee that you end up in the same spot).
+	

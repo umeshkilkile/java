@@ -1,0 +1,5 @@
+package com_12.lowes.enums;
+
+public enum Spiciness {
+	NOT, MILD, MEDIUM, HOT, FLAMING
+}

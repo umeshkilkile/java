@@ -1,0 +1,157 @@
+Concurrency
+	- The problems that you solve with concurrency can be roughly classified as "speed" and "design manageability."
+	
+	- If you want a program to run faster, break it into pieces and run each piece on a separate processor. 
+		Concurrency is a fundamental tool for multiprocessor programming.
+		
+	- To make your programs run faster, you’ll have to learn to take advantage of those extra processors, and that’s 
+		one thing that concurrency gives you.
+		
+	- One very straightforward way to implement concurrency is at the operating system level, using processes. 
+		A process is a self-contained program running within its own address space.
+	
+	- A multitasking operating system can run more than one process (program) at a time by periodically switching 
+		the CPU from one process to another, while making it look as if each process is chugging along on its own.
+		
+	- Java’s threading is preemptive, which means that a scheduling mechanism provides time slices for each thread, 
+		periodically interrupting a thread and context switching to another thread so that each one is given a reasonable 
+		amount of time to drive its task.
+		
+	- In a cooperative system, each task voluntarily gives up control, which requires the programmer to consciously 
+		insert some kind of yielding statement into each task. The advantage to a cooperative system is twofold: Context switching 
+		is typically much cheaper than with a preemptive system, and there is theoretically no limit to the number of independent 
+		tasks that can be running at once.
+		
+Basic Threading
+	- Concurrent programming allows you to partition a program into separate, independently running tasks. 
+		Using multithreading, each of these independent tasks (also called subtasks) is driven by a thread of execution. 
+		A thread is a single sequential flow of control within a process. A single process can thus have multiple concurrently 
+		executing tasks, but you program as if each task has the CPU to itself. An underlying mechanism divides up the CPU time for you.
+	- Multitasking
+		- Multitasking allows  CPU to perform multiple tasks (program, process, task, threads) simultaneously.
+		- Multitasking let CPU to execute multiple tasks at the same time.
+		- In multitasking CPU switches between programs frequently.
+		- In multitasking system has to allocate separate memory and resources to each program that CPU is executing.
+		
+	- Multithreading
+		- Multithreading allows multiple threads of the same process to execute simultaneously.		
+		- Multithreading let CPU to execute multiple threads of a process simultaneously.
+		- In multithreading system has to allocate memory to a process, multiple threads of that process shares the same memory and resources allocated to the process.
+		- In multithreading CPU switches between the threads frequently.
+
+- You create tasks and somehow attach a thread to your task so that the thread will drive that task.		
+
+- Thread groups
+	- A thread group holds a collection of threads.
+	
+- Atomicity and volatility
+	- Atomicity
+		- An atomic operation is one that cannot be interrupted by the thread scheduler; if the operation begins, then it will run to 
+			completion before the possibility of a context switch.
+		- Atomicity applies to "simple operations" on primitive types except for longs and doubles.
+		- Reading and writing primitive variables other than long and double is guaranteed to go to and from memory as indivisible (atomic) operations.
+		- However, the JVM is allowed to perform reads and writes of 64- bit quantities (long and double variables) as two separate 32-bit operations, raising the possibility that a context switch could happen in the middle of a read or write, and then different tasks could see incorrect results (this is sometimes called word tearing, because you might see the value after only part of it has been changed).
+		- However, you do get atomicity (for simple assignments and returns) if you use the volatile keyword when defining a long or double variable
+		- Atomic operations are thus not interruptible by the threading mechanism. Expert programmers can take advantage of this to write lock-free code, which does not need to be synchronized.
+		- Trying to remove synchronization is usually a sign of premature optimization, and will cause you a lot of trouble, probably without gaining much, or anything.
+		- On multiprocessor systems (which are now appearing in the form of multicore processors—multiple CPUs on a single chip), visibility rather than atomicity is much more of an issue than on single-processor systems. Changes made by one task, even if they’re atomic in the sense of not being interruptible, might not be visible to other tasks (the changes might be temporarily stored in a local processor cache, for example), so different tasks will have a different view of the application’s state. The synchronization mechanism, on the other hand, forces changes by one task on a multiprocessor system to be visible across the application. Without synchronization, it’s indeterminate when changes become visible.
+	- Volatility
+		- The volatile keyword also ensures visibility across the application. If you declare a field to be volatile, this means that as soon as a write occurs for that field, all reads will see the change. This is true even if local caches are involved—volatile fields are immediately written through to main memory, and reads occur from main memory.	
+
+- It’s important to understand that atomicity and volatility are distinct concepts.
+	- An atomic operation on a non-volatile field will not necessarily be flushed to main memory, and so another task that reads that field will not necessarily see the new value.
+	- If multiple tasks are accessing a field, that field should be volatile; otherwise, the field should only be accessed via synchronization.
+	- Synchronization also causes flushing to main memory, so if a field is completely guarded by synchronized methods or blocks, it is not necessary to make it volatile.
+	- Any writes that a task makes will be visible to that task, so you don’t need to make a field volatile if it is only seen within a task.
+	- volatile doesn’t work when the value of a field depends on its previous value (such as incrementing a counter), nor does it work on fields whose values are constrained by the values of other fields, such as the lower and upper bound of a Range class which must obey the constraint lower <= upper.
+	- It’s typically only safe to use volatile instead of synchronized if the class has only one mutable field. Again, your first choice should be to use the synchronized keyword—that’s the safest approach, and trying to do anything else is risky.
+
+What qualifies as an atomic operation?
+	- Assignment and returning the value in a field will usually be atomic.	
+
+Thread states
+
+	A thread can be in any one of four states:
+	
+		1. New: 
+			- A thread remains in this state only momentarily, as it is being created. 
+			- It allocates any necessary system resources and performs initialization. 
+			- At this point it becomes eligible to receive CPU time. 
+			- The scheduler will then transition this thread to the runnable or blocked state.
+		2. Runnable: 
+			- This means that a thread can be run when the time-slicing mechanism has CPU cycles available for the thread. 
+			- Thus, the thread might or might not be running at any moment, but there’s nothing to prevent it from being run 
+				if the scheduler can arrange it. That is, it’s not dead or blocked.
+		3. Blocked: 
+			- The thread can be run, but something prevents it. 
+			- While a thread is in the blocked state, the scheduler will simply skip it and not give it any CPU time. 
+			- Until a thread reenters the runnable state, it won’t perform any operations.
+		4. Dead: 
+			- A thread in the dead or terminated state is no longer schedulable and will not receive any CPU time. 
+			- Its task is completed, and it is no longer runnable. 
+			- One way for a task to die is by returning from its run( ) method, but a task’s thread can also be interrupted	
+
+Becoming blocked
+	- A task can become blocked for the following reasons:
+		
+		• You’ve put the task to sleep by calling sleep(milliseconds), in which case it will not be run for the specified time.
+		• You’ve suspended the execution of the thread with wait( ). It will not become runnable again until the thread gets 
+			the notify( ) or notifyAll( ) message (or the equivalent signal( ) or signalAll( ) for the 
+			Java SE5 java.util.concurrent library tools).
+		• The task is waiting for some I/O to complete.
+		• The task is trying to call a synchronized method on another object, and that object’s lock is not available 
+			because it has already been acquired by another task.
+
+	- In old code, you may also see suspend( ) and resume( ) used to block and unblock threads, but these are deprecated in 
+		modern Java (because they are deadlock-prone), and so will not be examined.			
+	- The stop( ) method is also deprecated, because it doesn’t release the locks that the thread has acquired, and if the objects are in an inconsistent state ("damaged"), other tasks can view and modify them in that state. The resulting problems can be subtle and difficult to detect.
+	
+	Interruption
+		- Sometimes you want to terminate a task that is in a blocked state. If you can’t wait for it to get to a point in the code where it can check a state value and decide to terminate on its own, you have to force the task out of its blocked state.
+		- As you might imagine, it’s much messier to break out of the middle of a Runnable.run( ) method than it is to wait for that method to get to a test of a "cancel" flag, or to some other place where the programmer is ready to leave the method. When you break out of a blocked task, you might need to clean up resources. Because of this, breaking out of the middle of a task’s run( ) is more like throwing an exception than anything else, so in Java threads, exceptions are used for this kind of abort.16 (This walks the fine edge of being an inappropriate use of exceptions, because it means you are often using them for control flow.) To return to a known good state when terminating a task this way, you must carefully consider the execution paths of your code and write your catch clause to properly clean everything up.
+		- So that you can terminate a blocked task, the Thread class contains the interrupt( ) method. This sets the interrupted status for that thread. A thread with its interrupted status set will throw an InterruptedException if it is already blocked or if it attempts a blocking operation. The interrupted status will be reset when the exception is thrown or if the task calls Thread.interrupted( ). As you’ll see, Thread.interrupted( ) provides a second way to leave your run( ) loop, without throwing an exception.
+		- To call interrupt( ), you must hold a Thread object. You may have noticed that the new concurrent library seems to avoid the direct manipulation of Thread objects and instead tries to do everything through Executors. If you call shutdownNow( ) on an Executor, it will send an interrupt( ) call to each of the threads it has started. This makes sense because you’ll usually want to shut down all the tasks for a particular Executor at once, when you’ve finished part of a project or a whole program. However, there are times when you may want to only interrupt a single task. If you’re using Executors, you can hold on to the context of a task when you start it by calling submit( ) instead of execute( ). submit( ) returns a generic Future<?>, with an unspecified parameter because you won’t ever call get( ) on it—the point of holding this kind of Future is that you can call cancel( ) on it and thus use it to interrupt a particular task. If you pass true to cancel( ), it has permission to call interrupt( ) on that thread in order to stop it; thus cancel( ) is a way to interrupt individual threads started with an Executor.
+		
+Cooperation between tasks
+
+	- As you’ve seen, when you use threads to run more than one task at a time, you can keep one task from interfering with another task’s resources by using a lock (mutex) to synchronize the behavior of the two tasks. That is, if two tasks are stepping on each other over a shared resource (usually memory), you use a mutex to allow only one task at a time to access that resource.		
+	- With that problem solved, the next step is to learn how to make tasks cooperate with each other, so that multiple tasks can work together to solve a problem. Now the issue is not about interfering with one another, but rather about working in unison
+	- The key issue when tasks are cooperating is handshaking between those tasks. To accomplish this handshaking, we use the same foundation: the mutex, which in this case guarantees that only one task can respond to a signal. This eliminates any possible race conditions.
+	- On top of the mutex, we add a way for a task to suspend itself until some external state changes, indicating that it’s time for that task to move forward.
+	- Handshaking between tasks, which is safely implemented using the Object methods wait( ) and notifyAll( ). The Java SE5 concurrency library also provides Condition objects with await( ) and signal( ) methods.
+	
+	wait() and notifyAll()
+		- wait() allows you to wait for a change in some condition that is outside the control of the forces in the current method. 
+			Often, this condition will be changed by another task. You don’t want to idly loop while testing the condition inside 
+			your task; this is called busy waiting, and it’s usually a bad use of CPU cycles. 
+		- So wait( ) suspends the task while waiting for the world to change, and only when a notify( ) or notifyAll( ) occurs—suggesting 
+			that something of interest may have happened—does the task wake up and check for changes. 
+		- Thus, wait() provides a way to synchronize activities between tasks.
+		- It’s important to understand that sleep() does not release the object lock when it is called, and neither does yield( ). 
+		- On the other hand, when a task enters a call to wait( ) inside a method, that thread’s execution is suspended, and the lock 
+			on that object is released. 
+		- Because wait( ) releases the lock, it means that the lock can be acquired by another task, so other synchronized methods in 
+			the (now unlocked) object can be called during a wait( ). This is essential, because those other methods are typically what 
+			cause the change that makes it interesting for the suspended task to reawaken. 
+		- Thus, when you call wait( ), you’re saying, "I’ve done all I can right now, so I’m going to wait right here, but I want to allow other synchronized operations to take place if they can."
+
+	There are two forms of wait( ). 
+		- One version takes an argument in milliseconds that has the same meaning as in sleep( ): "Pause for this period of time." 
+			But unlike with sleep( ), with wait(pause):
+				1. The object lock is released during the wait( ).
+				2. You can also come out of the wait() due to a notify( ) or notifyAll( ), in addition to letting the clock run out.
+		
+		- The second, more commonly used form of wait( ) takes no arguments. 
+			This wait( ) continues indefinitely until the thread receives a notify( ) or notifyAll( ).
+			
+	
+	- One fairly unique aspect of wait( ), notify( ), and notifyAll( ) is that these methods are part of the base class Object and not part of Thread. 
+		Although this seems a bit strange at first—to have something that’s exclusively for threading as part of the universal base class—it’s essential 
+		because these methods manipulate the lock that’s also part of every object. 
+		As a result, you can put a wait( ) inside any synchronized method, regardless of whether that class extends Thread or implements Runnable. 
+		In fact, the only place you can call wait( ), notify( ), or notifyAll( ) is within a synchronized method or block 
+		(sleep( ) can be called within non-synchronized methods since it doesn’t manipulate the lock). 
+		If you call any of these within a method that’s not synchronized, the program will compile, but when you run it, you’ll get an 
+		IllegalMonitorStateException with the somewhat nonintuitive message "current thread not owner." 
+		This message means that the task calling wait( ), notify( ), or notifyAll( ) must "own" (acquire) the lock for the object before it can call any of 
+		those methods.

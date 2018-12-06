@@ -1,0 +1,95 @@
+Set Interface
+	- A Set is a Collection that cannot contain duplicate elements.
+	- The Set interface contains only methods inherited from Collection and adds the restriction that duplicate elements 
+		are prohibited.
+	- Each element that you add to the Set must be unique; otherwise, the Set doesn’t add the duplicate element. Elements added to a Set must at least define equals( ) to establish object uniqueness. Set has exactly the same interface as Collection. The Set interface does not guarantee that it will maintain its elements in any particular order.
+	- Set also adds a stronger contract on the behavior of the equals and hashCode operations, allowing Set instances to be 
+		compared meaningfully even if their implementation types differ.
+	- Two Set instances are equal if they contain the same elements.
+	- Set has the same interface as Collection, so there isn’t any extra functionality like there is in the two different types 
+		of List. Instead, the Set is exactly a Collection — it just has different behavior.
+	- HashSet implementation, which is optimized for rapid lookup.
+	- HashSet uses hashing for speed
+	- The order maintained by a HashSet is different from a TreeSet or a LinkedHashSet, since each implementation has a different way of storing elements.
+	- TreeSet keeps elements sorted into a red-black tree data structure, whereas 
+		HashSet uses the hashing function. 
+		LinkedHashSet also uses hashing for lookup speed, but appears to maintain elements in insertion order using a linked list.
+	
+The Java platform contains three general-purpose Set implementations:
+
+									   Set
+								 		|
+									    |	
+				--------------------------------------------------------
+				|				 |				|					   |
+				|				 |				|					   |
+			HashSet			  TreeSet		LinkedHashSet			EnumSet
+
+HashSet
+	- HashSet, which stores its elements in a hash table, is the best-performing implementation; however it makes no 
+		guarantees concerning the order of iteration.
+	- HashSet is backed by a HashMap. It makes no guarantees about the sequence of the elements when you iterate them.
+	- For Sets where fast lookup time is important. Elements must also define hashCode( ).
+	
+	- java.util.HashSet<E> extends AbstractSet<E> implements Set<E>, Cloneable, java.io.Serializable
+		
+TreeSet
+	- TreeSet, which stores its elements in a red-black tree, orders its elements based on their values; it is substantially 
+		slower than HashSet.
+	- TreeSet also guarantees the order of the elements when iterated, but the order is the sorting order of the elements. 
+		In other words, the order in which the elements whould be sorted if you used a Collections.sort() on a List or array containing these elements. 
+		This order is determined either by their natural order (if they implement Comparable), or by a specific Comparator implementation.
+	- An ordered Set backed by a tree. This way, you can extract an ordered sequence from a Set. Elements must also implement the Comparable interface.
+	
+	- java.util.TreeSet<E> extends AbstractSet<E> implements NavigableSet<E>, Cloneable, java.io.Serializable
+	
+LinkedHashSet
+	-  LinkedHashSet, which is implemented as a hash table with a linked list running through it, orders its elements based on 
+		the order in which they were inserted into the set (insertion-order).
+	-  LinkedHashSet spares its clients from the unspecified, generally chaotic ordering provided by HashSet at a cost that 
+		is only slightly higher.
+	- LinkedHashSet differs from HashSet by guaranteeing that the order of the elements during iteration is the same as the order they were inserted into the LinkedHashSet. 
+		Reinserting an element that is already in the LinkedHashSet does not change this order.
+	- Has the lookup speed of a HashSet, but internally maintains the order in which you add the elements (the insertion order) using a linked list. Thus, when you iterate through the Set, the results appear in insertion order. Elements must also define hashCode( ).
+	
+	- java.util.LinkedHashSet<E> extends HashSet<E> implements Set<E>, Cloneable, java.io.Serializable
+	
+
+##############################Set#########################################################
+
+package java.util;
+
+public interface Set<E> extends Collection<E> {
+    // Query Operations
+    int size();
+    boolean isEmpty();
+    boolean contains(Object o);
+    Iterator<E> iterator();
+    Object[] toArray();
+    <T> T[] toArray(T[] a);
+
+    // Modification Operations
+    boolean add(E e);
+    boolean remove(Object o);
+
+    // Bulk Operations
+    boolean containsAll(Collection<?> c);
+    boolean addAll(Collection<? extends E> c);
+    boolean retainAll(Collection<?> c);
+    boolean removeAll(Collection<?> c);
+    void clear();
+
+    // Comparison and hashing
+    boolean equals(Object o);
+    int hashCode();
+    
+    @Override
+    default Spliterator<E> spliterator() {
+        return Spliterators.spliterator(this, Spliterator.DISTINCT);
+    }
+}
+
+##############################Set#########################################################	
+
+- You remove elements by calling the remove(Object o) method. There is no way to remove an object based on index in a Set, since the order of the elements 
+	depends on the Set implementation.

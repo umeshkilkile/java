@@ -1,0 +1,8 @@
+Strings
+	- Every method in the String class that appears to modify a String actually creates and returns a brand new String object containing the modification. 
+		The original String is left untouched.
+	- Immutability can have efficiency issues. A case in point is the operator ‘+’ that has been overloaded for String objects. Overloading means that an operation has been given an extra meaning when used with a particular class. (The ‘+’ and ‘+=‘ for String are the only operators that are overloaded in Java, and Java does not allow the programmer to overload any others.)
+	- You can see that every String method carefully returns a new String object when it’s necessary to change the contents. Also notice that if the contents don’t need changing, the method will just return a reference to the original String. This saves storage and overhead.
+
+Regular Expressions
+	- Regular expressions are powerful and flexible text-processing tools. They allow you to specify, programmatically, complex patterns of text that can be discovered in an input string. Once you discover these patterns, you can then react to them any way you want. Although the syntax of regular expressions can be intimidating at first, they provide a compact and dynamic language that can be employed to solve all sorts of string processing, matching and selection, editing, and verification problems in a completely general way.	

@@ -1,0 +1,12 @@
+Anonymous Inner Class in Java
+	- It is an inner class without a name and for which only a single object is created.
+	- An anonymous inner class can be useful when making an instance of an object with certain “extras” such 
+		as overloading methods of a class or interface, without having to actually subclass a class.
+	- Anonymous inner classes are useful in writing implementation classes for listener interfaces in graphics programming.
+	- Anonymous inner class are mainly created in two ways:
+		- Class (may be abstract or concrete)
+		- Interface
+	- Anonymous classes enable you to make your code more concise. 
+	- They enable you to declare and instantiate a class at the same time. They are like local classes except that they do not have a name. Use them if you need to use a local class only once.
+	- While local classes are class declarations, anonymous classes are expressions, which means that you define the class in another expression.
+	

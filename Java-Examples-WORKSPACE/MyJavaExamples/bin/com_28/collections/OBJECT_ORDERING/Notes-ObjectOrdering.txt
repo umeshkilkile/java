@@ -1,0 +1,16 @@
+Object Ordering
+	- If the List consists of String elements, it will be sorted into alphabetical order. 
+	- If it consists of Date elements, it will be sorted into chronological order. How does this happen? String and Date both implement 
+		the Comparable interface.
+	- Comparable implementations provide a natural ordering for a class, which allows objects of that class to be sorted automatically.
+	- If you try to sort a list, the elements of which do not implement Comparable, Collections.sort(list) will throw a ClassCastException. 
+	- Similarly, Collections.sort(list, comparator) will throw a ClassCastException if you try to sort a list whose elements cannot be compared to one another using the comparator. 
+	
+	
+########################### Comparable ###########################
+package java.lang;
+
+public interface Comparable<T> {
+    public int compareTo(T o);
+}
+########################### Comparable ###########################	

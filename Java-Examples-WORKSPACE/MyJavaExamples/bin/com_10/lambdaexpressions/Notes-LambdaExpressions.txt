@@ -1,0 +1,10 @@
+Lambda Expressions 
+	- Lambda expressions enable you to pass functionality as an argument to another method, such as what 
+		action should be taken when someone clicks a button.
+  
+    - Lambda expressions enable you to do this, to treat functionality as method argument, or code as data.
+  
+  
+  
+  
+ 

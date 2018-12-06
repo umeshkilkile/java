@@ -1,0 +1,5 @@
+package com_6.lowes.operators;
+
+public class Tank {
+	int level;
+}

@@ -1,0 +1,25 @@
+2017-11-13 14:55:06,135 [Worker-27] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1-sources.jar
+2017-11-13 14:55:15,230 [Worker-27] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1-sources.jar
+2017-11-16 16:31:53,972 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: umesh:lowes:0.0.1-SNAPSHOT @ C:\UMESH SUBHASH KILKILE\MY_TEST_EXAMPLES_WORKSPACE\MY_JAVA_JEE_STUDY_WORKSPACE\Java-Oracle-Examples-WORKSPACE\lowes\pom.xml.
+2017-11-16 16:31:57,973 [Worker-26] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /lowes/src/main/java
+2017-11-16 16:31:57,976 [Worker-26] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /lowes/src/main/resources
+2017-11-16 16:31:57,977 [Worker-26] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /lowes/src/test/java
+2017-11-16 16:31:57,977 [Worker-26] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /lowes/src/test/resources
+2017-11-16 16:32:00,098 [Worker-37] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-16 16:32:00,176 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-16 16:32:00,180 [Worker-37] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-16 16:32:00,227 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-16 16:32:27,700 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: umesh:lowes:0.0.1-SNAPSHOT @ C:\UMESH SUBHASH KILKILE\MY_TEST_EXAMPLES_WORKSPACE\MY_JAVA_JEE_STUDY_WORKSPACE\Java-Oracle-Examples-WORKSPACE\PROJECT-To-Download-JAR-via-Maven\pom.xml.
+2017-11-16 16:32:28,005 [Worker-26] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-16 16:32:28,043 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-16 16:32:28,045 [Worker-26] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-16 16:32:28,081 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-16 16:33:02,291 [Worker-37] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: umesh:lowes:0.0.1-SNAPSHOT @ C:\UMESH SUBHASH KILKILE\MY_TEST_EXAMPLES_WORKSPACE\MY_JAVA_JEE_STUDY_WORKSPACE\Java-Oracle-Examples-WORKSPACE\PROJECT-To-Download-JAR-via-Maven\pom.xml.
+2017-11-16 16:33:02,602 [Worker-37] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-16 16:33:02,640 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-16 16:33:02,642 [Worker-37] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-16 16:33:02,673 [Worker-37] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-16 16:33:37,250 [Worker-36] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-16 16:33:37,288 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2017-11-16 16:33:37,296 [Worker-36] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+2017-11-16 16:33:37,331 [Worker-36] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource

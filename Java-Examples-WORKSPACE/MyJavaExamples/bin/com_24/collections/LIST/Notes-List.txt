@@ -1,0 +1,158 @@
+List interface
+	- A List is an ordered Collection (sometimes called a sequence). 
+	- Lists may contain duplicate elements.
+	- Lists promise to maintain elements in a particular sequence.
+	- In addition to the operations inherited from Collection, the List interface includes operations for the following:
+		- Positional access
+			- Manipulates elements based on their numerical position in the list. 
+			- This includes methods such as get, set, add, addAll, and remove.
+		- Search
+			- Searches for a specified object in the list and returns its numerical position. 
+			- Search methods include indexOf and lastIndexOf.
+		- Iteration 
+			- Extends Iterator semantics to take advantage of the list's sequential nature. 
+			- The listIterator methods provide this behavior.
+		- Range-view
+			- The sublist method performs arbitrary range operations on the list.
+	- Like the Set interface, List strengthens the requirements on the equals and hashCode methods so that two List objects 
+		can be compared for logical equality without regard to their implementation classes. 
+	- Two List objects are equal if they contain the same elements in the same order.
+	- An ArrayList allows you to look up an object using a number, so in a sense it associates numbers to objects.
+	- There are two types of List:
+		• The basic ArrayList, which excels at randomly accessing elements, but is slower when inserting and removing elements 
+			in the middle of a List.
+		• The LinkedList, which provides optimal sequential access, with inexpensive insertions and deletions from the middle of the List. 
+			A LinkedList is relatively slow for random access, but it has a larger feature set than the ArrayList.
+	
+The Java platform contains two general-purpose List implementations.
+								
+								List
+								 |
+								 |
+					----------------------------------
+					|			|			|		 |
+				ArrayList	LinkedList	  Vector	Stack		
+				 
+		- ArrayList 
+			- Which is usually the better-performing implementation, and
+			- java.util.ArrayList<E> extends AbstractList<E> implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+			 
+		- LinkedList 
+			- Which offers better performance under certain circumstances.
+			- The LinkedList also implements the basic List interface like ArrayList does, but it performs certain 
+				operations (insertion and removal in the middle of the List) more efficiently than does ArrayList. 
+				Conversely, it is less efficient for random-access operations.
+			- java.util.LinkedList<E> extends AbstractSequentialList<E> implements List<E>, Deque<E>, Cloneable, java.io.Serializable
+
+Iterator and ListIterator
+	- Iterator
+		- The Iterator returned by List's iterator operation returns the elements of the list in proper sequence.
+		- An iterator is an object whose job is to move through a sequence and select each object in that sequence 
+			without the client programmer knowing or caring about the underlying structure of that sequence.
+		- Iterator is another design pattern.
+		- With an Iterator, you don’t need to worry about the number of elements in the container. That’s taken care of for you 
+			by hasNext( ) and next( ).
+	
+	- ListIterator
+		- List also provides a richer iterator, called a ListIterator, which allows you to traverse the list in either direction, 
+			modify the list during iteration, and obtain the current position of the iterator.
+		- The three methods that ListIterator inherits from Iterator (hasNext, next, and remove) do exactly the same thing in both interfaces.
+		- The hasPrevious and the previous operations are exact analogues of hasNext and next. 
+			The former operations refer to the element before the (implicit) cursor, whereas the latter refer to the 
+			element after the cursor. 
+			The previous operation moves the cursor backward, whereas next moves it forward.
+		- When iterating the list via its Iterator or via the for-loop (which also uses the Iterator behind the scene), 
+			the elements are iterated in the same sequence they are stored in the list.
+			
+
+##############################List#########################################################
+package java.util;
+
+public interface List<E> extends Collection<E> {
+    // Query Operations
+    int size();
+    boolean isEmpty();
+    boolean contains(Object o);
+    Iterator<E> iterator();
+    Object[] toArray();
+    <T> T[] toArray(T[] a);
+
+    // Modification Operations
+    boolean add(E e);
+    boolean remove(Object o);
+
+    // Bulk Modification Operations
+    boolean containsAll(Collection<?> c);
+    boolean addAll(Collection<? extends E> c);
+    boolean addAll(int index, Collection<? extends E> c);
+    boolean removeAll(Collection<?> c);
+    boolean retainAll(Collection<?> c);
+    default void replaceAll(UnaryOperator<E> operator) {
+        Objects.requireNonNull(operator);
+        final ListIterator<E> li = this.listIterator();
+        while (li.hasNext()) {
+            li.set(operator.apply(li.next()));
+        }
+    }
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    default void sort(Comparator<? super E> c) {
+        Object[] a = this.toArray();
+        Arrays.sort(a, (Comparator) c);
+        ListIterator<E> i = this.listIterator();
+        for (Object e : a) {
+            i.next();
+            i.set((E) e);
+        }
+    }
+    void clear();
+
+    // Comparison and hashing
+    boolean equals(Object o);
+    int hashCode();
+
+    // Positional Access Operations
+    E get(int index);
+    E set(int index, E element);
+    void add(int index, E element);
+    E remove(int index);
+
+    // Search Operations
+    int indexOf(Object o);
+    int lastIndexOf(Object o);
+
+    // List Iterators
+    ListIterator<E> listIterator();
+    ListIterator<E> listIterator(int index);
+
+    // View
+    List<E> subList(int fromIndex, int toIndex);
+
+    @Override
+    default Spliterator<E> spliterator() {
+        return Spliterators.spliterator(this, Spliterator.ORDERED);
+    }
+}
+##############################List#########################################################
+
+
+- remove(Object element) 
+	- Removes that element in the list, if it is present. 
+	- All subsequent elements in the list are then moved up in the list. Their index thus decreases by 1.
+- remove(int index) 
+	- Removes the element at the given index. 
+	- All subsequent elements in the list are then moved up in the list. Their index thus decreases by 1.
+
+List Algorithms
+	- sort — sorts a List using a merge sort algorithm, which provides a fast, stable sort. (A stable sort is one that does not reorder equal elements.)
+	- shuffle — randomly permutes the elements in a List.
+	- reverse — reverses the order of the elements in a List.
+	- rotate — rotates all the elements in a List by a specified distance.
+	- swap — swaps the elements at specified positions in a List.
+	- replaceAll — replaces all occurrences of one specified value with another.
+	- fill — overwrites every element in a List with the specified value.
+	- copy — copies the source List into the destination List.
+	- binarySearch — searches for an element in an ordered List using the binary search algorithm.
+	- indexOfSubList — returns the index of the first sublist of one List that is equal to another.
+	- lastIndexOfSubList — returns the index of the last sublist of one List that is equal to another.
+
+- LinkedList has additional methods that are not in the List interface	

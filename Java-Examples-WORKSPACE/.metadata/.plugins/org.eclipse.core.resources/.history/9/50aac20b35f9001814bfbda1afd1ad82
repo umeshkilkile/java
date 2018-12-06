@@ -1,0 +1,7 @@
+package com.lowes.reusing.classes;
+
+class Art {
+	Art() {
+		System.out.println("Art constructor");
+	}
+}

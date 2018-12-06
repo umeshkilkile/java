@@ -1,0 +1,16 @@
+package com.lowes.micellaneous;
+
+public class StaticKeyword_Demo {
+	public static void main(String[] args) {
+
+		/*
+		 * Now even if you make two StaticTest objects, there will still be only
+		 * one piece of storage for StaticTest.i. Both objects will share the
+		 * same i.
+		 */
+		StaticTest st1 = new StaticTest();
+		StaticTest st2 = new StaticTest();
+
+		System.out.println(st1);
+	}
+}

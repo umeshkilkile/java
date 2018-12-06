@@ -1,0 +1,7 @@
+package com_15.lowes.inheritance;
+
+public class Car {
+	public String getCarDetails() {
+		return "Generic Car";
+	}
+}

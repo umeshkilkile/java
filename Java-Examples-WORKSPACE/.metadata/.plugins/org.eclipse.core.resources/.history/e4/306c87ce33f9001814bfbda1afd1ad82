@@ -1,0 +1,9 @@
+package com.lowes.nestedclasses;
+
+public class SuperClass {
+
+	public void doIt() {
+		System.out.println("SuperClass doIt()");
+	}
+
+}

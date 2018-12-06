@@ -1,0 +1,14 @@
+Generics
+	- One way that object-oriented languages allow generalization is through polymorphism. You can write (for example) 
+		a method that takes a base class object as an argument, and then use that method with any class derived from that 
+		base class. Now your method is a little more general and can be used in more places. The same is true within 
+		classes—anyplace you use a specific type, a base type provides more flexibility. Of course, anything but a final class can be extended, 
+		so this flexibility is automatic much of the time.
+	- Generics implement the concept of parameterized types, which allow multiple types.
+	- The term "generic" means "pertaining or appropriate to large groups of classes."
+	- One of the primary motivations for generics is to specify what type of object a container holds, and to have that specification backed up by the compiler.
+
+Erasure
+	- Java generics are implemented using erasure. This means that any specific type information is erased when you use a generic. 
+		Inside the generic, the only thing that you know is that you’re using an object. 
+		So List<String> and List< Integer> are, in fact, the same type at run time. Both forms are "erased" to their raw type, List.	

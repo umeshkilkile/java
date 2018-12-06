@@ -1,0 +1,5 @@
+package com.lowes.defaultmethods;
+
+public interface Drawable {
+	public void draw();
+}

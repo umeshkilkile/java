@@ -1,0 +1,6 @@
+package com.lowes.nestedclasses;
+
+class WithInner {
+	class Inner {
+	}
+}

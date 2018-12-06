@@ -1,0 +1,27 @@
+Type Information
+	- Runtime type information (RTTI) allows you to discover and use type information while a program is running.
+	- Java performs its RTTI using the Class object, even if you’re doing something like a cast.
+	- There’s one Class object for each class that is part of your program. That is, each time you write and compile a new class, 
+		a single Class object is also created (and stored, appropriately enough, in an identically named .class file). 
+		To make an object of that class, the Java Virtual Machine (JVM) that’s executing your program uses a subsystem called a class loader.
+	- All classes are loaded into the JVM dynamically, upon the first use of a class. This happens when the program makes the first reference 
+		to a static member of that class. It turns out that the constructor is also a static method of a class, even though the static keyword 
+		is not used for a constructor. Therefore, creating a new object of that class using the new operator also counts as a reference to a 
+		static member of the class.
+	- Thus, a Java program isn’t completely loaded before it begins, but instead pieces of it are loaded when necessary. This is different 
+		from many traditional languages. Dynamic loading enables behavior that is difficult or impossible to duplicate in a statically loaded 
+		language like C++.
+	- The class loader first checks to see if the Class object for that type is loaded. If not, the default class loader finds the .class file 
+		with that name (an add-on class loader might, for example, look for the bytecodes in a database instead). As the bytes for the class 
+		are loaded, they are verified to ensure that they have not been corrupted and that they do not comprise bad Java code (this is one of the lines of defense for security in Java).
+	- Once the Class object for that type is in memory, it is used to create all objects of that type. Refer program (SweetShop_Demo_2.java) to prove it:
+
+Class literals
+	- Java provides a second way to produce the reference to the Class object: the class literal. In the preceding program this would look like:
+		e.g., FancyToy.class;
+	- which is not only simpler, but also safer since it’s checked at compile time (and thus does not need to be placed in a try block). 
+		Because it eliminates the forName( ) method call, it’s also more efficient.
+	- It’s interesting to note that creating a reference to a Class object using ".class" doesn’t automatically initialize the Class object. There are actually three steps in preparing a class for use:
+		1. Loading, which is performed by the class loader. This finds the bytecodes (usually, but not necessarily, on your disk in your classpath) and creates a Class object from those bytecodes.
+		2. Linking. The link phase verifies the bytecodes in the class, allocates storage for static fields, and if necessary, resolves all references to other classes made by this class.
+		3. Initialization. If there’s a superclass, initialize that. Execute static initializers and static initialization blocks.	

@@ -1,0 +1,4 @@
+package com_14.lowes.interfaces;
+
+class C5 extends C implements I1 {
+}

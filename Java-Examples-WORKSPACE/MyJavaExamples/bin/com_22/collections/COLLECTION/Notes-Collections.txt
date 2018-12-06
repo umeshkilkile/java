@@ -1,0 +1,196 @@
+Collections
+	- A collection — sometimes called a container — is simply an object that groups multiple elements into a single unit.
+	- Collections are used to store, retrieve, manipulate, and communicate aggregate data.
+	- Collection: a sequence of individual elements with one or more rules applied to them.
+	
+Collections Framework
+	- A collections framework is a unified architecture for representing and manipulating collections.
+	- Collections framework contain the following,
+		- Interfaces,
+		- Implementations,
+		- Algorithms
+Benefits of the Java Collections Framework
+	- Reduces programming effort
+	- Increases program speed and quality
+	- Allows interoperability among unrelated APIs
+	- Reduces effort to learn and to use new APIs
+	- Reduces effort to design new APIs
+	- Fosters software reuse
+	
+- Core Collection interfaces
+
+			Iterable
+				|	
+			Collection							Map
+				|								 |
+				|								 |
+	-------------------------				  SortedMap
+	|		|		| 		|	
+   Set    List    Queue    Deque
+    |
+ SortedSet
+
+- The Iterable interface (java.lang.Iterable) is one of the root interfaces of the Java collection classes. 
+	The Collection interface extends Iterable, so all subtypes of Collection also implement the Iterable interface.
+- A class that implements the Iterable can be used with the new for-loop. 
+	
+- java.util.Collection interface
+	- The root of the collection hierarchy.
+	- The Collection interface is the least common denominator that all collections implement and is used to pass collections 
+		around and to manipulate them when maximum generality is desired.
+- Set 
+	- A collection that cannot contain duplicate elements.
+	- Set cannot have duplicate elements
+
+- SortedSet
+	- A Set that maintains its elements in ascending order. 
+	- Several additional operations are provided to take advantage of the ordering.
+
+- List
+	- An ordered collection (sometimes called a sequence).
+	- Lists can contain duplicate elements.
+	- The user of a List generally has precise control over where in the list each element is inserted and can access elements 
+		by their integer index (position).
+	- A List must hold the elements in the way that they were inserted
+	
+- Queue
+	- A collection used to hold multiple elements prior to processing
+	- a Queue provides additional insertion, extraction, and inspection operations
+	- Queues typically, but do not necessarily, order elements in a FIFO (first-in, first-out) manner. Among the exceptions are priority queues
+	- Priority queues, which order elements according to a supplied comparator or the elements' natural ordering. 
+		Whatever the ordering used, the head of the queue is the element that would be removed by a call to remove or poll.
+	- In a FIFO queue, all new elements are inserted at the tail of the queue.
+	- Queue produces the elements in the order determined by a queuing discipline (usually the same order in which they are inserted).
+	
+- Deque
+	- A collection used to hold multiple elements prior to processing. Besides basic Collection operations, 
+		a Deque provides additional insertion, extraction, and inspection operations.
+	- Deques can be used both as FIFO (first-in, first-out) and LIFO (last-in, first-out). 
+		In a deque all new elements can be inserted, retrieved and removed at both ends.
+- Map 
+	- An object that maps keys to values. 
+	- A Map cannot contain duplicate keys; each key can map to at most one value.
+	- Map is an associative array that lets you associate objects with other objects.
+	- Map: a group of key-value object pairs, allowing you to look up a value using a key.
+	- A map allows you to look up an object using another object. It’s also called an associative array, because it associates objects with other objects, or a dictionary, because you look up a value object using a key object just like you look up a definition using a word.
+	
+- SortedMap
+	- A Map that maintains its mappings in ascending key order. This is the Map analog of SortedSet. 
+	- Sorted maps are used for naturally ordered collections of key/value pairs, such as dictionaries and telephone directories.
+
+	
+- Iterators
+	- An Iterator is an object that enables you to traverse through a collection and to remove elements from the collection selectively, if desired.
+	- public interface Iterator<E> {
+		  boolean hasNext();
+		  E next();
+		  void remove(); //optional
+	  }
+	- Note that Iterator.remove is the only safe way to modify a collection during iteration; 
+		the behavior is unspecified if the underlying collection is modified in any other way while the iteration is in progress.
+	- Use Iterator instead of the for-each construct when you need to:
+		- Remove the current element. The for-each construct hides the iterator, so you cannot call remove. 
+			Therefore, the for-each construct is not usable for filtering.
+		- Iterate over multiple collections in parallel.	  
+
+
+##############################Iterable#########################################################
+package java.lang;
+
+public interface Iterable<T> {
+    Iterator<T> iterator();
+    default void forEach(Consumer<? super T> action) {
+        Objects.requireNonNull(action);
+        for (T t : this) {
+            action.accept(t);
+        }
+    }
+    default Spliterator<T> spliterator() {
+        return Spliterators.spliteratorUnknownSize(iterator(), 0);
+    }
+}
+##############################Iterable#########################################################
+		
+Collection interface methods,
+
+##############################Collection#########################################################
+package java.util;
+
+public interface Collection<E> extends Iterable<E> {
+    // Query Operations
+    int size();
+    boolean isEmpty();
+    boolean contains(Object o);
+    Iterator<E> iterator();
+    Object[] toArray();
+    <T> T[] toArray(T[] a);
+
+    // Modification Operations
+    boolean add(E e);
+    boolean remove(Object o);
+
+    // Bulk Operations
+    boolean containsAll(Collection<?> c);
+    boolean addAll(Collection<? extends E> c);
+    boolean removeAll(Collection<?> c);
+    default boolean removeIf(Predicate<? super E> filter) {
+        Objects.requireNonNull(filter);
+        boolean removed = false;
+        final Iterator<E> each = iterator();
+        while (each.hasNext()) {
+            if (filter.test(each.next())) {
+                each.remove();
+                removed = true;
+            }
+        }
+        return removed;
+    }
+    boolean retainAll(Collection<?> c);
+    void clear();
+
+    // Comparison and hashing
+    boolean equals(Object o);
+    int hashCode();
+
+    @Override
+    default Spliterator<E> spliterator() {
+        return Spliterators.spliterator(this, 0);
+    }
+    default Stream<E> stream() {
+        return StreamSupport.stream(spliterator(), false);
+    }
+    default Stream<E> parallelStream() {
+        return StreamSupport.stream(spliterator(), true);
+    }
+}
+##############################Collection#########################################################	
+
+
+
+##############################Iterator#########################################################
+package java.util;
+
+public interface Iterator<E> {
+    boolean hasNext();
+    E next();
+    default void remove() {
+        throw new UnsupportedOperationException("remove");
+    }
+    default void forEachRemaining(Consumer<? super E> action) {
+        Objects.requireNonNull(action);
+        while (hasNext())
+            action.accept(next());
+    }
+}
+##############################Iterator#########################################################
+
+
+
+
+- Four fundamental container types 
+	- Map, 
+	- List, 
+	- Set, and 
+	- Queue 
+	
+	- There is more than one implementation of each interface.
