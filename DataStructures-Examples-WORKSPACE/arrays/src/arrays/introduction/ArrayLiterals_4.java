@@ -16,3 +16,8 @@ public class ArrayLiterals_4 {
 
 	}
 }
+/*
+ * - The length of this array determines the length of the created array.
+ * 
+ * - There is no need to write the new int[] part in the latest versions of Java
+ */

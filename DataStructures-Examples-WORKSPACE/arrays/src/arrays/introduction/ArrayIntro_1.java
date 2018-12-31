@@ -30,7 +30,7 @@ public class ArrayIntro_1 {
  * 
  * - The direct superclass of an array type is Object.
  * 
- * - Every array type implements the interfaces Cloneable and
+ * - Every array type implements the interfaces java.lang.Cloneable and
  * java.io.Serializable
  * 
  * - Array can contains primitives data types as well as objects of a class
