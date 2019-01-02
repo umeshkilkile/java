@@ -2,8 +2,9 @@ Java
 	- Java was originally a programming language
 	- Over time Java has evolved into more than just a language. 
 		It is a full platform with lots of standard APIs, open source APIs, tools, a big developer community with millions of developers etc.
-	- Java files are stored in files suffixed with .java . These files are then compiled into Java byte code using the Java compiler, and the byte code is then executed using the Java Virtual Machine (JVM). 
-		The Java compiler and the JVM are part of the Java Development Kit.
+	- Java files are stored in files suffixed with .java . These files are then compiled into Java byte code using the Java compiler, and the 
+		byte code is then executed using the Java Virtual Machine (JVM). 
+	- The Java compiler and the JVM are part of the Java Development Kit.
 	- The Java bytecode is stored in binary .class files.
 	- Java is an interpreted language. What does that mean? Well, the Java language is compiled into Java bytecode. 
 		This Java bytecode is then executed by the Java Virtual Machine.
@@ -18,27 +19,49 @@ Java
 	- The Java Software Development Kit (Java SDK) is the JRE plus the Java compiler, and a set of other tools. 
     - Only the full Java SDK contains the Java compiler which turns your .java source files into byte code .class files.
 
+New in Java 8
+	- Java Lambda Expressions
+	- Java Streams (functional streams)
+	- JavaFX (bundled with Java SE from Java 8).
+	- The Nashorn JavaScript engine.
+	
+New in Java 7
+	- Try with resources
+	- Catching Multiple Exceptions
+	- Java Fork and Join via ForkJoinPool
+	- Strings in Java switch statements.
+	- New file system API in Java NIO 2.0
+	- Type inference in generic declarations (the so called "diamond" operator).
+	- Numeric literals with underscores as visual separators (e.g. 1_000_000).
+	- Binary numeric literals (e.g. 0b10100101).
+	- Support for dynamically typed languages in the Java Virtual Machine (JVM).	
+		
 Java Editions
 	JSE
 		- The Java Standard Edition for desktop and stand alone server applications.
 	JEE
 		- The Java Enterprise Edition for developing and executing Java components that run embedded in a Java server.
-		- The Java Enterprise Edition contains a lot of extra tools and APIs for executing Java components inside a Java Enterprise Server. Examples of enterprise Java components are:
+		- The Java Enterprise Edition contains a lot of extra tools and APIs for executing Java components inside a Java Enterprise Server. 
+			Examples of enterprise Java components are:
 
-			- Servlets
-			- Java Server Pages (JSP)
-			- Java Server Faces (JSF)
-			- Enterprise Java Beans (EJB)
-			- Two-phase commit transactions
-			- Java Message Service message queue APIs (JMS)
+				- Servlets
+				- Java Server Pages (JSP)
+				- Java Server Faces (JSF)
+				- Enterprise Java Beans (EJB)
+				- Two-phase commit transactions
+				- Java Message Service message queue APIs (JMS)
+				
 		- The Java Enterprise Edition is only a specification. Software vendors like IBM, Oracle etc. are free to implement this specification. 
-			And they have IBM WebSphere, Redhat JBoss, Oracle WebLogic etc. 
-			Their implementations are usually called Java Application Servers, because the servers are capable of running Java applications, while offering a lot of standardized services to these Java applications.
+			And they have IBM WebSphere, Redhat JBoss, Oracle WebLogic etc. Their implementations are usually called Java Application Servers, 
+			because the servers are capable of running Java applications, while offering a lot of standardized services to these Java applications.
 	JME
 		- The Java Micro Edition for developing and executing Java applications on mobile phones and embedded devices.
 		
-- java -version
-- If you are maintaining older Java projects you may need to have multiple Java SDKs installed. This is possible. However, typically it will be the latest version which is executed when you type java in the command prompt.
+- java -version (Type this command in command prompt, to know current installed Java version)
+
+- If you are maintaining older Java projects you may need to have multiple Java SDKs installed. This is possible. 
+	However, typically it will be the latest version which is executed when you type java in the command prompt.
+	
 - java -cp classes myjavacode.MyClass
 	- cp (class path)
 

@@ -12,7 +12,6 @@ public class Thread_Ex_5 {
 				}
 			}.start();
 		}
-
 	}
 }
 

@@ -20,7 +20,6 @@ public class ThreadUsingRunnableInterface_Ex_2 {
 		 * this:
 		 */
 		Runnable run = new Runnable() {
-
 			@Override
 			public void run() {
 				System.out.println("Anonymous Runnable running");
@@ -28,5 +27,13 @@ public class ThreadUsingRunnableInterface_Ex_2 {
 		};
 		Thread t = new Thread(run);
 		t.start();
+
+		/* Java Lambda Implementation of Runnable */
+		Runnable runnable = () -> {
+			System.out.println("Lambda Runnable running");
+		};
+
+		Thread thread2 = new Thread(runnable);
+		thread2.start();
 	}
 }

@@ -15,11 +15,11 @@ public class ThreadUsingThreadClass_Ex_1 {
 		myThread.start();
 
 		/* You can also create an anonymous subclass of Thread like this */
-		Thread t = new Thread() {
+		Thread thread = new Thread() {
 			public void run() {
 				System.out.println("Anonymous Thread running");
 			}
 		};
-		t.start();
+		thread.start();
 	}
 }
