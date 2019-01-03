@@ -325,22 +325,162 @@ Java Volatile Keyword
 		enhancement technique. Thus, you should only use volatile variables when you really need to 
 		enforce visibility of variables.
 					
+Java ThreadLocal
+	- The ThreadLocal class in Java enables you to create variables that can only be read and written 
+		by the same thread. 
+	- Thus, even if two threads are executing the same code, and the code has a reference to a 
+		ThreadLocal variable, then the two threads cannot see each other's ThreadLocal variables.				
+				
+Thread Signaling
+	- Java has a builtin wait mechanism that enable threads to become inactive while waiting for signals. 
+		The class java.lang.Object defines three methods, wait(), notify(), and notifyAll(), 
+		to facilitate this.
+	- A thread that calls wait() on any object becomes inactive until another thread calls notify() 
+		on that object. In order to call either wait() or notify the calling thread must first obtain 
+		the lock on that object. In other words, the calling thread must call wait() or notify() 
+		from inside a synchronized block.
+	- There is also a notifyAll() method that will wake all threads waiting on a given object.				
+	- A thread cannot call wait(), notify() or notifyAll() without holding the lock on the object 
+		the method is called on. If it does, an IllegalMonitorStateException is thrown.
+	- Once a thread calls wait() it releases the lock it holds on the monitor object. This allows other 
+		threads to call wait() or notify() too, since these methods must be called from inside a 
+		synchronized block.
+	- Once a thread is awakened it cannot exit the wait() call until the thread calling notify() has 
+		left its synchronized block. In other words: The awakened thread must reobtain the lock on the 
+		monitor object before it can exit the wait() call, because the wait call is nested inside a 
+		synchronized block. If multiple threads are awakened using notifyAll() only one awakened thread 
+		at a time can exit the wait() method, since each thread must obtain the lock on the monitor 
+		object in turn before exiting wait().
+				
+Thread Deadlock
+	- A deadlock is when two or more threads are blocked waiting to obtain locks that some of the other 
+		threads in the deadlock are holding. Deadlock can occur when multiple threads need the same locks, 
+		at the same time, but obtain them in different order.
+					
+				
+Starvation and Fairness
+	- If a thread is not granted CPU time because other threads grab it all, it is called "starvation". 
+		The thread is "starved to death" because other threads are allowed the CPU time instead of it. 
+		The solution to starvation is called "fairness" - that all threads are fairly granted a chance 
+		to execute.
+		
+	- Causes of Starvation in Java
+		The following three common causes can lead to starvation of threads in Java:
+
+			- Threads with high priority swallow all CPU time from threads with lower priority.
+
+			- Threads are blocked indefinitely waiting to enter a synchronized block, because other 
+				threads are constantly allowed access before it.
+
+			- Threads waiting on an object (called wait() on it) remain waiting indefinitely because 
+				other threads are constantly awakened instead of it.					 
 				
 				
+Implementing Fairness in Java
+	- Using Locks Instead of Synchronized Blocks				
 				
+What is Slipped Conditions?
+	- Slipped conditions means, that from the time a thread has checked a certain condition until it 
+		acts upon it, the condition has been changed by another thread so that it is errornous for the 
+		first thread to act. 				
 				
+Locks in Java
+	- A lock is a thread synchronization mechanism like synchronized blocks except locks can be more 
+		sophisticated than Java's synchronized blocks. 
+		Locks (and other more advanced synchronization mechanisms) are created using synchronized blocks, 
+		so it is not like we can get totally rid of the synchronized keyword.
+		
+	- synchronized block of Java code:
+		e.g.,
+			public class Counter{
+			  private int count = 0;
+			  public int inc(){
+			    synchronized(this){
+			      return ++count;
+			    }
+			  }
+			}
+		
+		- Notice the synchronized(this) block in the inc() method. This block makes sure that only one 
+			thread can execute the return ++count at a time.
 				
+	- Using a Lock instead of a synchronized block
+		e.g.,
+			public class Counter{
+			  private Lock lock = new Lock();
+			  private int count = 0;
+			
+			  public int inc(){
+			    lock.lock();
+			    int newCount = ++count;
+			    lock.unlock();
+			    return newCount;
+			  }
+			}
+		- The lock() method locks the Lock instance so that all threads calling lock() are blocked 
+			until unlock() is executed.
+		
 				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+	- Lock Reentrance
+		- Synchronized blocks in Java are reentrant. This means, that if a Java thread enters a 
+			synchronized block of code, and thereby take the lock on the monitor object the block is 
+			synchronized on, the thread can enter other Java code blocks synchronized on the same monitor 
+			object.
+			
+		- e.g.,
+			public class Reentrant{
+			  public synchronized outer(){
+			    inner();
+			  }
+			  public synchronized inner(){
+			    //do something
+			  }
+			}
+		- Notice how both outer() and inner() are declared synchronized, which in Java is equivalent to a 
+			synchronized(this) block. If a thread calls outer() there is no problem calling inner() 
+			from inside outer(), since both methods (or blocks) are synchronized on the same monitor 
+			object ("this"). If a thread already holds the lock on a monitor object, it has access to all 
+			blocks synchronized on the same monitor object. This is called reentrance. 
+			The thread can reenter any block of code for which it already holds the lock.
+	
+	
+Read / Write Locks in Java
+	- Imagine you have an application that reads and writes some resource, but writing it is not done as 
+		much as reading it is. Two threads reading the same resource does not cause problems for each 
+		other, so multiple threads that want to read the resource are granted access at the same time, 
+		overlapping. But, if a single thread wants to write to the resource, no other reads nor writes 
+		must be in progress at the same time. To solve this problem of allowing multiple readers but only 
+		one writer, you will need a read / write lock.
+		
+	- Conditions for getting read and write access to the resource:
+
+		Read Access  : If no threads are writing, and no threads have requested write access.
+		Write Access : If no threads are reading or writing.	
+	
+Reentrance Lockout
+	- Reentrance lockout is a situation similar to deadlock and nested monitor lockout.
+	- Reentrance lockout may occur if a thread reenters a Lock, ReadWriteLock or some other synchronizer 
+		that is not reentrant. 
+		Reentrant means that a thread that already holds a lock can retake it. Java's synchronized blocks 
+		are reentrant.	
+	
+Semaphores
+	- A Semaphore is a thread synchronization construct that can be used either to send signals between threads 
+		to avoid missed signals, or to guard a critical section like you would with a lock.	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
 				
 				
 
